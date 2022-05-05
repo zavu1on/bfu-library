@@ -2,6 +2,7 @@
   "name": "library",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://zavu1on.github.io/bfu-library/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -14,6 +15,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
+    "gh-pages": "^3.2.3",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
