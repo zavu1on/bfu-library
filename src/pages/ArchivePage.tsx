@@ -1,18 +1,21 @@
 import { FC, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Header } from '../components/Header'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Loader } from '../components/Loader'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const ArchivePage: FC = () => {
-  const { isLoading, newspapers } = useTypedSelector(state => state.library)
+  const { isLoading, newspapers, publishers } = useTypedSelector(
+    state => state.library
+  )
   const importantNewspapers = newspapers.filter(n => n.isImportant)
   const { fetchLibrary } = useActions()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetchLibrary()
+    if (!publishers.length) fetchLibrary()
   }, [])
 
   if (isLoading) return <Loader />
@@ -27,18 +30,19 @@ export const ArchivePage: FC = () => {
           <Row>
             {importantNewspapers.map(n => (
               <Col
+                key={n.id}
                 sm={3}
                 style={{
-                  height: 340,
+                  height: 300,
                 }}
               >
-                <Link
-                  to={'/'}
-                  style={{
-                    backgroundImage: `url(${n.previewImageUrl})`,
-                  }}
-                  className='squared-img'
-                ></Link>
+                <Link to={'/'}>
+                  <img
+                    src={n.previewImageUrl}
+                    alt={n.name}
+                    className='squared-img'
+                  />
+                </Link>
                 <Link to={'/'} style={{ color: '#000' }}>
                   {n.name}
                 </Link>
@@ -46,6 +50,43 @@ export const ArchivePage: FC = () => {
             ))}
           </Row>
           <div style={{ height: 64 }}></div>
+        </Container>
+      </div>
+      <div className='publishers'>
+        <Container className='publishers-container'>
+          <h4>Издатели</h4>
+          <Row>
+            {publishers.map(p => (
+              <Col
+                key={p.id}
+                sm={6}
+                style={{
+                  height: 300,
+                }}
+              >
+                <img
+                  src={p.previewImageUrl}
+                  alt={p.name}
+                  className='squared-img'
+                />
+                <div className='text'>
+                  <h5>{p.name}</h5>
+                  <p>{p.description}</p>
+                  <div className='years'>{p.yearsOfWorking} гг</div>
+                  <div className='numbers'>{p.numOfNewspapers} номеров</div>
+                  <Button
+                    variant='outline-dark'
+                    onClick={() => navigate(`/publishers/${p.id}/`)}
+                    style={{
+                      marginTop: 18,
+                    }}
+                  >
+                    Перейти
+                  </Button>
+                </div>
+              </Col>
+            ))}
+          </Row>
         </Container>
       </div>
     </>

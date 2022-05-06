@@ -33,6 +33,7 @@ export const IndexPage: FC = () => {
           уважать оной есть постыдное малодушие!
         </div>
       </header>
+      <Link to={'/archive/'}>Архив</Link>
     </>
   )
 }
