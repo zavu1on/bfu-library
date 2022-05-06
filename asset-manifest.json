@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bfu-library/static/css/main.7686a0d0.css",
-    "main.js": "/bfu-library/static/js/main.47041f73.js",
+    "main.css": "/bfu-library/static/css/main.bbb8a238.css",
+    "main.js": "/bfu-library/static/js/main.39e734dd.js",
     "static/media/header.png": "/bfu-library/static/media/header.23e0dae73b00841a5c9b.png",
     "static/media/logo.svg": "/bfu-library/static/media/logo.295c38b05c406246639742266a605e2f.svg",
     "index.html": "/bfu-library/index.html",
-    "main.7686a0d0.css.map": "/bfu-library/static/css/main.7686a0d0.css.map",
-    "main.47041f73.js.map": "/bfu-library/static/js/main.47041f73.js.map"
+    "main.bbb8a238.css.map": "/bfu-library/static/css/main.bbb8a238.css.map",
+    "main.39e734dd.js.map": "/bfu-library/static/js/main.39e734dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.7686a0d0.css",
-    "static/js/main.47041f73.js"
+    "static/css/main.bbb8a238.css",
+    "static/js/main.39e734dd.js"
   ]
 }
