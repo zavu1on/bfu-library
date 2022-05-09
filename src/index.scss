@@ -10,6 +10,15 @@ $gray: #e5e5e5;
   font-style: normal;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+%shadowed {
+  box-shadow: 0px 8px 35px rgba(0, 0, 0, 0.16);
+}
+
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -41,14 +50,40 @@ a {
   background-size: 100%;
 }
 
+.landing-img {
+  width: 50%;
+  height: 100%;
+
+  @media screen and (max-width: 770px) {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+}
+
+h2 {
+  margin: 82px 0;
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+}
+
+h3.text-title {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.landing-text {
+  font-size: 16px;
+}
+
 header {
   margin-top: -10px;
   width: 100%;
-  height: 522px;
+  height: 580px;
   background-image: url('./static/header.png');
   background-repeat: no-repeat;
-  object-fit: cover;
-  background-size: 100%;
+  background-position: center;
+  background-size: cover;
 
   .logo-container {
     position: relative;
@@ -105,10 +140,185 @@ header {
     color: $white;
     text-align: center;
   }
+
+  @media screen and (max-width: 1440px) {
+    nav ul {
+      margin: 0 300px;
+    }
+  }
+
+  @media screen and (max-width: 1130px) {
+    nav ul {
+      margin: 0 200px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    nav ul {
+      margin: 0 100px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    nav ul {
+      margin: 0 20px;
+    }
+
+    .logo-container {
+      img.logo {
+        transform: scale(0.7);
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    height: 700px;
+
+    nav ul {
+      margin: 0 20px;
+      flex-direction: column;
+
+      li {
+        text-transform: uppercase;
+        margin-top: 12px;
+      }
+    }
+
+    .quote {
+      margin-top: 80px;
+      font-size: 20px;
+      width: 300px;
+    }
+  }
+}
+
+.landing-container .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (max-width: 770px) {
+    flex-direction: column;
+  }
+}
+
+.landing-delimiter {
+  @extend %shadowed;
+  width: 100%;
+  padding: 56px 200px;
+  margin-top: 82px;
+
+  .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .top {
+      font-size: 40px;
+    }
+
+    .bottom {
+      margin-top: 6px;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 770px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .col-md-4 {
+      margin-bottom: 32px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.instruction {
+  width: 100%;
+  padding: 0 120px;
+
+  .row {
+    width: 100%;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .square {
+      @extend %shadowed;
+      width: 240px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .top {
+        font-size: 64px;
+      }
+
+      .bottom {
+        font-size: 20px;
+        margin-top: 24px;
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding: 0;
+
+    .square {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  @media screen and (max-width: 770px) {
+    .col-md-4 {
+      margin-bottom: 32px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+aside {
+  height: 270px;
+  background-image: url('./static/paper.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    font-size: 28px;
+    color: $white;
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  button {
+    margin-top: 60px;
+  }
 }
 
 .nav {
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+  @extend %shadowed;
   background: #fdfdfd !important;
 
   &-link {
@@ -133,14 +343,6 @@ header {
     }
 
     .squared-img {
-      // @media screen and (max-width: 990px) {
-      //   height: 235px;
-      // }
-
-      // @media screen and (max-width: 760px) {
-      //   height: 168px;
-      // }
-
       @media screen and (max-width: 580px) {
         height: 90%;
       }
@@ -151,7 +353,7 @@ header {
 .publishers {
   width: 100%;
   background: $white;
-  box-shadow: 0px 8px 35px rgba(0, 0, 0, 0.16);
+  @extend %shadowed;
 
   &-container {
     padding-top: 36px;
@@ -265,6 +467,21 @@ header {
       font-size: 24px;
       line-height: 29px;
       color: #ffffff;
+    }
+  }
+}
+
+footer {
+  background: $black;
+  padding: 56px 0;
+  text-align: center;
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $white;
+      text-decoration: underline;
     }
   }
 }

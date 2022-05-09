@@ -48,7 +48,7 @@ export const CategoryPage: FC = () => {
               {splitNewspapers(
                 newspapers.filter(n => n.category === category)
               ).map(qs => (
-                <Carousel.Item>
+                <Carousel.Item key={`item-${qs[0].id}`}>
                   <Row>
                     {qs.map(n => (
                       <Col

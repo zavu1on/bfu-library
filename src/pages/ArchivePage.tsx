@@ -76,7 +76,7 @@ export const ArchivePage: FC = () => {
                   <div className='numbers'>{p.numOfNewspapers} номеров</div>
                   <Button
                     variant='outline-dark'
-                    onClick={() => navigate(`/publishers/${p.id}/`)}
+                    onClick={() => navigate(`/archive/publishers/${p.id}/`)}
                     style={{
                       marginTop: 18,
                     }}

@@ -8,7 +8,7 @@ export const Header: FC = () => {
 
   return (
     <Nav
-      activeKey={pathname}
+      activeKey={`/${pathname.split('/')[1]}/`}
       onSelect={path => {
         if (path !== null) navigate(path)
       }}

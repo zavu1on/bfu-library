@@ -86,7 +86,7 @@ export const SelectYearPage: FC = () => {
         >
           {years.map(year => (
             <Col key={year} sm={4} className='publisher-year-col'>
-              <Link to={`/publishers/${id}/${year}/`}>
+              <Link to={`/archive/publishers/${id}/${year}/`}>
                 <img
                   src={publisher?.previewImageUrl}
                   alt={year.toString()}

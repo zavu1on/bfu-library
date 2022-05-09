@@ -11,12 +11,12 @@ export const useRouter = () => {
       <Routes>
         <Route path='/' element={<IndexPage />} />
         <Route path='/archive/' element={<ArchivePage />} />
-        <Route path='/categories/' element={<CategoryPage />} />
-        <Route path='/publishers/:id/' element={<SelectYearPage />} />
+        <Route path='/archive/publishers/:id/' element={<SelectYearPage />} />
         <Route
-          path='/publishers/:id/:year/'
+          path='/archive/publishers/:id/:year/'
           element={<SelectNewspaperPage />}
         />
+        <Route path='/categories/' element={<CategoryPage />} />
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </BrowserRouter>
