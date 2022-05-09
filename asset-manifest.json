@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/bfu-library/static/css/main.bbb8a238.css",
-    "main.js": "/bfu-library/static/js/main.39e734dd.js",
+    "main.css": "/bfu-library/static/css/main.a1c92e06.css",
+    "main.js": "/bfu-library/static/js/main.2e029ba9.js",
     "static/media/header.png": "/bfu-library/static/media/header.23e0dae73b00841a5c9b.png",
+    "static/media/library.png": "/bfu-library/static/media/library.c64602ec9fc1feae91c9.png",
+    "static/media/bfu.png": "/bfu-library/static/media/bfu.63fb76ffa167649f1304.png",
+    "static/media/paper.png": "/bfu-library/static/media/paper.b26b2f88cde5d245ebaa.png",
     "static/media/logo.svg": "/bfu-library/static/media/logo.295c38b05c406246639742266a605e2f.svg",
     "index.html": "/bfu-library/index.html",
-    "main.bbb8a238.css.map": "/bfu-library/static/css/main.bbb8a238.css.map",
-    "main.39e734dd.js.map": "/bfu-library/static/js/main.39e734dd.js.map"
+    "main.a1c92e06.css.map": "/bfu-library/static/css/main.a1c92e06.css.map",
+    "main.2e029ba9.js.map": "/bfu-library/static/js/main.2e029ba9.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbb8a238.css",
-    "static/js/main.39e734dd.js"
+    "static/css/main.a1c92e06.css",
+    "static/js/main.2e029ba9.js"
   ]
 }
