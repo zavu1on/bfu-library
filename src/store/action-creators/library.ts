@@ -15,7 +15,7 @@ export const fetchLibrary = () => {
                 name: 'Комсомольская правда',
                 description:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer et. Massa magna eu, suspendisse sit pretium mi libero, condimentum. Vulputate ullamcorper augue tincidunt id sed turpis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit ',
-                yearsOfWorking: '1987 - 2000',
+                yearsOfWorking: '2021 - 2022',
                 numOfNewspapers: 2000,
                 previewImageUrl:
                   'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
@@ -25,7 +25,7 @@ export const fetchLibrary = () => {
                 name: 'Комсомольская правда 2',
                 description:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer et. Massa magna eu, suspendisse sit pretium mi libero, condimentum. Vulputate ullamcorper augue tincidunt id sed turpis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit ',
-                yearsOfWorking: '1987 - 2000',
+                yearsOfWorking: '2021 - 2022',
                 numOfNewspapers: 2000,
                 previewImageUrl:
                   'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
@@ -40,7 +40,7 @@ export const fetchLibrary = () => {
                   name: 'Комсомольская правда',
                   description:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer et. Massa magna eu, suspendisse sit pretium mi libero, condimentum. Vulputate ullamcorper augue tincidunt id sed turpis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit ',
-                  yearsOfWorking: '1987 - 2000',
+                  yearsOfWorking: '2021 - 2022',
                   numOfNewspapers: 2000,
                   previewImageUrl:
                     'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80',
@@ -87,7 +87,7 @@ export const fetchLibrary = () => {
                   name: 'Комсомольская правда',
                   description:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer et. Massa magna eu, suspendisse sit pretium mi libero, condimentum. Vulputate ullamcorper augue tincidunt id sed turpis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit ',
-                  yearsOfWorking: '1987 - 2000',
+                  yearsOfWorking: '2021 - 2022',
                   numOfNewspapers: 2000,
                   previewImageUrl:
                     'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
@@ -134,7 +134,7 @@ export const fetchLibrary = () => {
                   name: 'Комсомольская правда',
                   description:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer et. Massa magna eu, suspendisse sit pretium mi libero, condimentum. Vulputate ullamcorper augue tincidunt id sed turpis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum est tempus. Sit ',
-                  yearsOfWorking: '1987 - 2000',
+                  yearsOfWorking: '2021 - 2022',
                   numOfNewspapers: 2000,
                   previewImageUrl:
                     'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',

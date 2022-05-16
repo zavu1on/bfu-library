@@ -10,14 +10,18 @@ export const SelectNewspaperPage: FC = () => {
   const { isLoading } = useTypedSelector(state => state.library)
   const newspapers = useTypedSelector(state =>
     state.library.newspapers.filter(
-      n => n.id === Number(id) && n.createdDate.getFullYear() === Number(year)
+      n =>
+        n.publisher.id === Number(id) &&
+        n.createdDate.getFullYear() === Number(year)
     )
   )
   const { fetchLibrary } = useActions()
 
+  console.log(newspapers)
+
   useEffect(() => {
     if (!newspapers.length) fetchLibrary()
-  })
+  }, [])
 
   if (isLoading) return <Loader />
 
