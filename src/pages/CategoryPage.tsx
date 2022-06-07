@@ -3,9 +3,9 @@ import { Header } from '../components/Header'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Loader } from '../components/Loader'
-import { Link } from 'react-router-dom'
 import { Container, Col, Row, Carousel } from 'react-bootstrap'
 import { INewspaper } from '../types/library'
+import { NewspaperCard } from '../components/NewspaperCard'
 
 export const CategoryPage: FC = () => {
   const { isLoading, newspapers, categories } = useTypedSelector(
@@ -40,6 +40,9 @@ export const CategoryPage: FC = () => {
   return (
     <>
       <Header />
+      <Container>
+        <h1>Подборки</h1>
+      </Container>
       {categories.map(category => (
         <div className='publishers' key={category} style={{ marginTop: 56 }}>
           <Container className='publishers-container'>
@@ -51,32 +54,25 @@ export const CategoryPage: FC = () => {
                 <Carousel.Item key={`item-${qs[0].id}`}>
                   <Row>
                     {qs.map(n => (
-                      <Col
+                      <NewspaperCard
                         key={n.id}
-                        sm={3}
-                        className='publisher-year-col'
-                        style={{
-                          height: 300,
-                        }}
-                      >
-                        <Link to={'/'}>
-                          <img
-                            src={n?.previewImageUrl}
-                            alt={n.name}
-                            className='squared-img'
-                          />
-                          <div className='text'>
-                            <div>{n?.createdDate.getFullYear()}</div>
-                          </div>
-                        </Link>
-                      </Col>
+                        id={n.id}
+                        imageUrl={n.previewImageUrl}
+                        alt={n.name}
+                        date={n?.createdDate.getFullYear()}
+                        size={3}
+                        link={`/archive/publishers/${
+                          n.publisher.id
+                        }/${n.createdDate.getFullYear()}/`}
+                        tags={n.tags}
+                      />
                     ))}
                   </Row>
                 </Carousel.Item>
               ))}
             </Carousel>
 
-            <div style={{ height: 30 }}></div>
+            <div style={{ height: 36 }}></div>
           </Container>
         </div>
       ))}

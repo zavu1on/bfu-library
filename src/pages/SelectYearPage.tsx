@@ -90,16 +90,19 @@ export const SelectYearPage: FC = () => {
                 <img
                   src={publisher?.previewImageUrl}
                   alt={year.toString()}
-                  className='publisher-year'
+                  className='squared-img'
+                  style={{
+                    height: 300,
+                  }}
                 />
-                <div className='text'>
+                <div className='text calc-width'>
                   <div>{year}</div>
                 </div>
               </Link>
             </Col>
           ))}
         </Row>
-        <div style={{ height: 30 }}></div>
+        <div style={{ height: 36 }}></div>
       </Container>
     </>
   )

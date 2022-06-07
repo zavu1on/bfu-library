@@ -18,7 +18,7 @@ export const fetchLibrary = () => {
                 yearsOfWorking: '2021 - 2022',
                 numOfNewspapers: 2000,
                 previewImageUrl:
-                  'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                  'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
               },
               {
                 id: 2,
@@ -52,7 +52,7 @@ export const fetchLibrary = () => {
                 pages: [
                   {
                     imageUrl:
-                      'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                      'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
                     text: `<h4>Заголовок</h4>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum
                   est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer
@@ -77,7 +77,7 @@ export const fetchLibrary = () => {
                   },
                 ],
                 previewImageUrl:
-                  'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                  'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
               },
               {
                 id: 2,
@@ -90,7 +90,7 @@ export const fetchLibrary = () => {
                   yearsOfWorking: '2021 - 2022',
                   numOfNewspapers: 2000,
                   previewImageUrl:
-                    'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                    'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
                 },
                 createdDate: new Date(),
                 tags: ['Тег 1', 'Тег 2'],
@@ -99,7 +99,7 @@ export const fetchLibrary = () => {
                 pages: [
                   {
                     imageUrl:
-                      'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                      'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
                     text: `<h4>Заголовок</h4>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum
                   est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer
@@ -124,7 +124,7 @@ export const fetchLibrary = () => {
                   },
                 ],
                 previewImageUrl:
-                  'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                  'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
               },
               {
                 id: 3,
@@ -137,7 +137,7 @@ export const fetchLibrary = () => {
                   yearsOfWorking: '2021 - 2022',
                   numOfNewspapers: 2000,
                   previewImageUrl:
-                    'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                    'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
                 },
                 createdDate: new Date(),
                 tags: ['Тег 1'],
@@ -146,7 +146,7 @@ export const fetchLibrary = () => {
                 pages: [
                   {
                     imageUrl:
-                      'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                      'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
                     text: `<h4>Заголовок</h4>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet eleifend eu elementum
                   est tempus. Sit congue aliquam facilisi feugiat condimentum vitae vivamus integer
@@ -171,7 +171,7 @@ export const fetchLibrary = () => {
                   },
                 ],
                 previewImageUrl:
-                  'https://images.unsplash.com/photo-1651721839259-bb729f965cd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+                  'https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
               },
             ],
             tags: ['Тег 1', 'Тег 2'],

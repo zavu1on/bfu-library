@@ -29,13 +29,7 @@ export const ArchivePage: FC = () => {
 
           <Row>
             {importantNewspapers.map(n => (
-              <Col
-                key={n.id}
-                sm={3}
-                style={{
-                  height: 300,
-                }}
-              >
+              <Col key={n.id} sm={3}>
                 <Link to={'/'}>
                   <img
                     src={n.previewImageUrl}
@@ -57,13 +51,7 @@ export const ArchivePage: FC = () => {
           <h4>Издатели</h4>
           <Row>
             {publishers.map(p => (
-              <Col
-                key={p.id}
-                sm={6}
-                style={{
-                  height: 300,
-                }}
-              >
+              <Col key={p.id} sm={6}>
                 <img
                   src={p.previewImageUrl}
                   alt={p.name}
@@ -87,8 +75,10 @@ export const ArchivePage: FC = () => {
               </Col>
             ))}
           </Row>
+          <div style={{ height: 36 }}></div>
         </Container>
       </div>
+      <div style={{ height: 60 }}></div>
     </>
   )
 }

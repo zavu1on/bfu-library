@@ -1,5 +1,5 @@
 export const useFormater = () => {
-  return function (date: Date) {
+  return function (date: Date): string {
     const m = date.getMonth() + 1
     const d = date.getDate()
 

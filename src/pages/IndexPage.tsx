@@ -142,16 +142,12 @@ export const IndexPage: FC = () => {
         </div>
       </Container>
       <aside>
-        <div>
+        {/* <div>
           Народ, не знающий своего прошлого,
           <br />
           имеет будущего
-        </div>
-        <Button
-          variant='outline-dark'
-          size='lg'
-          onClick={() => navigate('/archive/')}
-        >
+        </div> */}
+        <Button variant='dark' size='lg' onClick={() => navigate('/archive/')}>
           Открыть архив
         </Button>
       </aside>
