@@ -30,14 +30,17 @@ export const ArchivePage: FC = () => {
           <Row>
             {importantNewspapers.map(n => (
               <Col key={n.id} sm={3}>
-                <Link to={'/'}>
+                <Link to={`/archive/newspapers/${n.id}/`}>
                   <img
                     src={n.previewImageUrl}
                     alt={n.name}
                     className='squared-img'
                   />
                 </Link>
-                <Link to={'/'} style={{ color: '#000' }}>
+                <Link
+                  to={`/archive/newspapers/${n.id}/`}
+                  style={{ color: '#000' }}
+                >
                   {n.name}
                 </Link>
               </Col>

@@ -3,9 +3,10 @@ import { Header } from '../components/Header'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Loader } from '../components/Loader'
-import { Container, Col, Row, Carousel } from 'react-bootstrap'
+import { Container, Row, Carousel } from 'react-bootstrap'
 import { INewspaper } from '../types/library'
 import { NewspaperCard } from '../components/NewspaperCard'
+import { useFormater } from '../hooks/useFormater'
 
 export const CategoryPage: FC = () => {
   const { isLoading, newspapers, categories } = useTypedSelector(
@@ -13,6 +14,7 @@ export const CategoryPage: FC = () => {
   )
   const { fetchLibrary } = useActions()
   const [index, setIndex] = useState(0)
+  const _ = useFormater()
 
   const handleSelect = (selectedIndex: number) => setIndex(selectedIndex)
 
@@ -59,11 +61,9 @@ export const CategoryPage: FC = () => {
                         id={n.id}
                         imageUrl={n.previewImageUrl}
                         alt={n.name}
-                        date={n?.createdDate.getFullYear()}
+                        date={_(n.createdDate)}
                         size={3}
-                        link={`/archive/publishers/${
-                          n.publisher.id
-                        }/${n.createdDate.getFullYear()}/`}
+                        link={`/archive/newspapers/${n.id}/`}
                         tags={n.tags}
                       />
                     ))}

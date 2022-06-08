@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Row, Col, Container, Form } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { NewspaperCard } from '../components/NewspaperCard'
@@ -20,6 +20,7 @@ export const SelectNewspaperPage: FC = () => {
   )
   const { fetchLibrary } = useActions()
   const _ = useFormater()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState<{
     text: string
     date: Date | null
@@ -27,9 +28,9 @@ export const SelectNewspaperPage: FC = () => {
     text: '',
     date: null,
   })
-
   useEffect(() => {
     if (!newspapers.length) fetchLibrary()
+    if (!isLoading && !newspapers.length) navigate('/not-found/')
   }, [])
 
   if (isLoading) return <Loader />
@@ -38,6 +39,22 @@ export const SelectNewspaperPage: FC = () => {
     <>
       <Header />
       <Container>
+        <div
+          style={{
+            marginTop: 12,
+            fontSize: 16,
+            color: '#6C757D',
+          }}
+        >
+          <span
+            style={{
+              color: '#343A40',
+            }}
+          >
+            Архив
+          </span>{' '}
+          / {newspapers[0]?.publisher.name} / {year}
+        </div>
         <h1>
           {newspapers[0]?.publisher.name}. {year} год
         </h1>
@@ -96,7 +113,7 @@ export const SelectNewspaperPage: FC = () => {
                     alt={n.name}
                     date={_(n.createdDate)}
                     size={4}
-                    link={'/'}
+                    link={`/archive/newspapers/${n.id}/`}
                     tags={n.tags}
                     tagsClassName='white-scroll'
                   />

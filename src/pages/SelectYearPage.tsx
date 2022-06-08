@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
@@ -11,12 +11,15 @@ export const SelectYearPage: FC = () => {
   const { id } = useParams()
   const { publishers, isLoading } = useTypedSelector(state => state.library)
   const { fetchLibrary } = useActions()
+  const navigate = useNavigate()
   const [years, setYears] = useState<number[]>([])
   const [initialYears, setInitialYears] = useState<number[]>([])
   const publisher = publishers.find(p => p.id === Number(id))
 
   useEffect(() => {
     if (!publishers.length) fetchLibrary()
+    if (!isLoading && !publisher) navigate('/not-found/')
+
     document.body.setAttribute('style', 'background: #E5E5E5')
 
     return () => document.body.removeAttribute('style')
