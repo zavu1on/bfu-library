@@ -22,6 +22,9 @@ export const Header: FC = () => {
       <Nav.Item>
         <Nav.Link eventKey='/learning-material/'>Учебные материалы</Nav.Link>
       </Nav.Item>
+      <Nav.Item className='lms'>
+        <Nav.Link eventKey='/lms/'>Личный кабинет</Nav.Link>
+      </Nav.Item>
     </Nav>
   )
 }

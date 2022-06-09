@@ -13,6 +13,11 @@ $gray: #e5e5e5;
 html,
 body {
   overflow-x: hidden;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 %shadowed {
@@ -327,6 +332,11 @@ aside {
 .nav {
   @extend %shadowed;
   background: #fdfdfd !important;
+  padding: 0 165px;
+
+  .lms {
+    margin-left: auto;
+  }
 
   &-link {
     font-size: 20px;
@@ -334,6 +344,20 @@ aside {
 
     &.active {
       text-decoration: underline;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    padding: 0;
+  }
+
+  @media screen and (max-width: 630px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .lms {
+      margin-left: 0;
     }
   }
 }
@@ -439,6 +463,7 @@ aside {
         .text {
           margin-right: 0;
           margin-top: 12px;
+          max-width: 100%;
         }
       }
     }
@@ -598,4 +623,38 @@ footer {
 
 .mr-4 {
   margin-right: 12px;
+}
+
+.full {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .form-container {
+    @extend %shadowed;
+    padding: 72px 135px;
+    background: #ffffff;
+
+    .form-type {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      a {
+        font-size: 20px;
+        color: #6c757d;
+
+        &.type-active {
+          color: $black;
+        }
+      }
+    }
+
+    form {
+      margin-top: 36px;
+    }
+  }
 }

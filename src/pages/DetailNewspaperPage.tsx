@@ -8,6 +8,7 @@ import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 // @ts-ignore
 import PrismaZoom from 'react-prismazoom'
+import { MyAlert } from '../components/MyAlert'
 
 export const DetailNewspaperPage: FC = () => {
   const { id } = useParams()
@@ -17,6 +18,7 @@ export const DetailNewspaperPage: FC = () => {
   const _ = useFormater()
   const newspaper = newspapers.find(n => n.id === Number(id))
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
     if (!newspapers.length) fetchLibrary()
@@ -66,6 +68,19 @@ export const DetailNewspaperPage: FC = () => {
           </span>{' '}
           / {newspaper?.publisher.name} / {_(newspaper?.createdDate!)}
         </div>
+
+        <MyAlert
+          show={showAlert}
+          setShow={setShowAlert}
+          variant='success'
+          header='Спасибо!'
+          text='Вы успешно отправили отчёт, наши редакторы скоро исправят эту ошибку.'
+          style={{
+            position: 'relative',
+            top: 20,
+          }}
+        />
+
         {newspaper?.pages.map((p, idx) => (
           <Row
             key={idx}
@@ -127,7 +142,13 @@ export const DetailNewspaperPage: FC = () => {
           <Button variant='secondary' onClick={handleCloseModal}>
             Отмена
           </Button>
-          <Button variant='dark' onClick={handleCloseModal}>
+          <Button
+            variant='dark'
+            onClick={() => {
+              handleCloseModal()
+              setShowAlert(true)
+            }}
+          >
             Отправить
           </Button>
         </Modal.Footer>

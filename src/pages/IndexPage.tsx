@@ -152,7 +152,7 @@ export const IndexPage: FC = () => {
         </Button>
       </aside>
       <footer>
-        <a href='https://kantiana.ru'>
+        <a href='https://kantiana.ru' target='_blank'>
           © 2022 Балтийский федеральный университет имени Иммануила Канта
         </a>
       </footer>
