@@ -1,18 +1,23 @@
 {
   "files": {
-    "main.css": "/bfu-library/static/css/main.4660881b.css",
-    "main.js": "/bfu-library/static/js/main.77fc8940.js",
+    "main.css": "/bfu-library/static/css/main.b877525c.css",
+    "main.js": "/bfu-library/static/js/main.256ef866.js",
     "static/media/header.png": "/bfu-library/static/media/header.23e0dae73b00841a5c9b.png",
     "static/media/library.png": "/bfu-library/static/media/library.c64602ec9fc1feae91c9.png",
     "static/media/bfu.png": "/bfu-library/static/media/bfu.63fb76ffa167649f1304.png",
     "static/media/paper.png": "/bfu-library/static/media/paper.b26b2f88cde5d245ebaa.png",
+    "static/media/reader.svg": "/bfu-library/static/media/reader.927b1b8782e9cbffcf7af5a30a9b6ae5.svg",
+    "static/media/editor.svg": "/bfu-library/static/media/editor.6a2972ed988e9aeb91cb14702b09dec1.svg",
+    "static/media/star-black.svg": "/bfu-library/static/media/star-black.1aff5072975273abd09ba753b2c56f8f.svg",
     "static/media/logo.svg": "/bfu-library/static/media/logo.295c38b05c406246639742266a605e2f.svg",
+    "static/media/star-fill-black.svg": "/bfu-library/static/media/star-fill-black.b2d94fd66017641619694c049a352d08.svg",
+    "static/media/star-fill.svg": "/bfu-library/static/media/star-fill.142e92e41637f31d1f4f81907cee4bb2.svg",
     "index.html": "/bfu-library/index.html",
-    "main.4660881b.css.map": "/bfu-library/static/css/main.4660881b.css.map",
-    "main.77fc8940.js.map": "/bfu-library/static/js/main.77fc8940.js.map"
+    "main.b877525c.css.map": "/bfu-library/static/css/main.b877525c.css.map",
+    "main.256ef866.js.map": "/bfu-library/static/js/main.256ef866.js.map"
   },
   "entrypoints": [
-    "static/css/main.4660881b.css",
-    "static/js/main.77fc8940.js"
+    "static/css/main.b877525c.css",
+    "static/js/main.256ef866.js"
   ]
 }
