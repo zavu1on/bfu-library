@@ -8,7 +8,6 @@ import { SelectYearPage } from '../pages/SelectYearPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { LMSPage } from '../pages/LMSPage'
 import { LoginPage } from '../pages/LoginPage'
-import { LogoutPage } from '../pages/LogoutPage'
 import { RegistrationPage } from '../pages/RegistrationPage'
 
 export const useRouter = () => {
@@ -30,7 +29,6 @@ export const useRouter = () => {
         <Route path='/lms/' element={<LMSPage />} />
         <Route path='/lms/login/' element={<LoginPage />} />
         <Route path='/lms/register/' element={<RegistrationPage />} />
-        <Route path='/lms/logout/' element={<LogoutPage />} />
 
         <Route path='/categories/' element={<CategoryPage />} />
         <Route path='/not-found/' element={<NotFoundPage />} />

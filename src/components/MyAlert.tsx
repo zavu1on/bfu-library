@@ -13,7 +13,7 @@ type AlertVariant =
 
 interface IProps {
   show: boolean
-  setShow: Function
+  closeHandler: any
   variant: AlertVariant
   header: string
   text: string
@@ -22,7 +22,7 @@ interface IProps {
 
 export const MyAlert: FC<IProps> = ({
   show,
-  setShow,
+  closeHandler,
   variant,
   header,
   text,
@@ -32,7 +32,7 @@ export const MyAlert: FC<IProps> = ({
     <Alert
       show={show}
       variant={variant}
-      onClose={() => setShow(false)}
+      onClose={closeHandler}
       dismissible
       style={style}
     >

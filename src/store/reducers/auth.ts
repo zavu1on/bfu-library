@@ -15,6 +15,8 @@ const initialState: IAuthState = {
   firstName: '',
   lastName: '',
   patronymicName: '',
+
+  error: null,
 }
 
 export const authReducer = (
@@ -36,6 +38,24 @@ export const authReducer = (
         firstName: '',
         lastName: '',
         patronymicName: '',
+
+        error: null,
+      }
+    case AuthActionTypes.CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      }
+    case AuthActionTypes.CHECK_IS_FAVORITE:
+      if (!!state.favorites.find(f => f.id === action.payload.id))
+        return {
+          ...state,
+          favorites: state.favorites.filter(f => f.id !== action.payload.id),
+        }
+
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
       }
     default:
       return state

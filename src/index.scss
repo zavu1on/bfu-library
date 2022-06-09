@@ -42,13 +42,18 @@ a {
   text-decoration: none;
 }
 
+h4,
+h5 {
+  font-weight: 400;
+}
+
 .carousel-control-prev {
   display: none;
 }
 
 .squared-img {
   display: block;
-  height: 200px;
+  height: 250px;
   width: 100%;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -330,7 +335,7 @@ aside {
 }
 
 .nav {
-  @extend %shadowed;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
   background: #fdfdfd !important;
   padding: 0 165px;
 
@@ -369,10 +374,6 @@ aside {
   &-container {
     padding-top: 60px;
 
-    h4 {
-      font-weight: 400;
-    }
-
     .squared-img {
       @media screen and (max-width: 580px) {
         height: 90%;
@@ -388,10 +389,6 @@ aside {
 
   &-container {
     padding-top: 36px;
-
-    h4 {
-      font-weight: 400;
-    }
 
     .col-sm-6 {
       display: flex;
@@ -542,6 +539,18 @@ footer {
   border-color: #ffffff;
 }
 
+.gray-scroll::-webkit-scrollbar {
+  height: 12px;
+}
+
+.gray-scroll::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+.gray-scroll::-webkit-scrollbar-thumb {
+  border-color: #e5e5e5;
+}
+
 .newspaper-filter {
   @extend %shadowed;
   background: #ffffff;
@@ -631,6 +640,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .form-container {
     @extend %shadowed;
@@ -656,5 +666,55 @@ footer {
     form {
       margin-top: 36px;
     }
+  }
+}
+
+.star {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+}
+
+.information {
+  @extend %shadowed;
+  background: #ffffff;
+  padding: 24px;
+
+  h5 {
+    margin-bottom: 2px;
+  }
+
+  h6 {
+    margin-top: 16px;
+
+    .icon {
+      margin-left: 6px;
+    }
+  }
+
+  .row {
+    margin-top: 8px;
+    overflow-x: auto;
+
+    .col-sm-4,
+    .col-sm-6,
+    .col-sm-12 {
+      margin-top: 4px;
+
+      .name {
+        font-size: 12px;
+        color: #6c757d;
+      }
+
+      .value {
+        font-size: 16px;
+        color: $black;
+      }
+    }
+  }
+
+  @media screen and (max-width: 770px) {
+    margin-bottom: 16px;
   }
 }

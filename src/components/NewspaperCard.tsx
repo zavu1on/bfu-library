@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import star from '../static/star-fill.svg'
 
 interface IProps {
   id: number | string
@@ -11,6 +12,8 @@ interface IProps {
   size: number
   link: string
   tagsClassName?: string
+  isFavorite?: boolean
+  favoriteClickHandler?: any
 }
 
 export const NewspaperCard: FC<IProps> = ({
@@ -22,6 +25,8 @@ export const NewspaperCard: FC<IProps> = ({
   link,
   tags,
   tagsClassName,
+  isFavorite,
+  favoriteClickHandler,
 }) => {
   if (tags?.length) {
     return (
@@ -31,6 +36,18 @@ export const NewspaperCard: FC<IProps> = ({
             <img src={imageUrl} alt={alt} className='squared-img' />
             <div className='text'>
               <div>{date}</div>
+              {isFavorite ? (
+                <button
+                  className='star'
+                  onClick={event => {
+                    event.preventDefault()
+
+                    favoriteClickHandler()
+                  }}
+                >
+                  <img src={star} alt='star' />
+                </button>
+              ) : null}
             </div>
           </Link>
         </div>

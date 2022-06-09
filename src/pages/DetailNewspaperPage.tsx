@@ -9,12 +9,15 @@ import { useTypedSelector } from '../hooks/useTypedSelector'
 // @ts-ignore
 import PrismaZoom from 'react-prismazoom'
 import { MyAlert } from '../components/MyAlert'
+import star from '../static/star-black.svg'
+import starFill from '../static/star-fill-black.svg'
 
 export const DetailNewspaperPage: FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { isLoading, newspapers } = useTypedSelector(state => state.library)
-  const { fetchLibrary } = useActions()
+  const { role, favorites } = useTypedSelector(state => state.auth)
+  const { fetchLibrary, checkIsFavorite } = useActions()
   const _ = useFormater()
   const newspaper = newspapers.find(n => n.id === Number(id))
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -59,19 +62,12 @@ export const DetailNewspaperPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          <span
-            style={{
-              color: '#343A40',
-            }}
-          >
-            Архив
-          </span>{' '}
-          / {newspaper?.publisher.name} / {_(newspaper?.createdDate!)}
+          Архив / {newspaper?.publisher.name} / {_(newspaper?.createdDate!)}
         </div>
 
         <MyAlert
           show={showAlert}
-          setShow={setShowAlert}
+          closeHandler={() => setShowAlert(false)}
           variant='success'
           header='Спасибо!'
           text='Вы успешно отправили отчёт, наши редакторы скоро исправят эту ошибку.'
@@ -81,6 +77,32 @@ export const DetailNewspaperPage: FC = () => {
           }}
         />
 
+        <h4 style={{ marginTop: 70 }}>
+          {newspaper?.publisher.name}, {_(newspaper?.createdDate!)}{' '}
+          {role !== 'anonymous' ? (
+            <button
+              className='star'
+              style={{
+                position: 'relative',
+                right: 0,
+                bottom: 2,
+              }}
+              onClick={() => checkIsFavorite(newspaper!)}
+            >
+              <img
+                src={
+                  !!favorites.find(f => f.id === newspaper?.id)
+                    ? starFill
+                    : star
+                }
+                alt='star'
+                style={{
+                  fill: 'black',
+                }}
+              />
+            </button>
+          ) : null}
+        </h4>
         {newspaper?.pages.map((p, idx) => (
           <Row
             key={idx}

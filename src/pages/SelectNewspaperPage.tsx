@@ -46,14 +46,7 @@ export const SelectNewspaperPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          <span
-            style={{
-              color: '#343A40',
-            }}
-          >
-            Архив
-          </span>{' '}
-          / {newspapers[0]?.publisher.name} / {year}
+          Архив / {newspapers[0]?.publisher.name} / {year}
         </div>
         <h1>
           {newspapers[0]?.publisher.name}. {year} год
@@ -77,6 +70,7 @@ export const SelectNewspaperPage: FC = () => {
               <Form.Control
                 type='text'
                 placeholder='Поиск'
+                value={formData.text}
                 onChange={event =>
                   setFormData(fd => ({
                     ...fd,

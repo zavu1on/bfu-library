@@ -54,14 +54,7 @@ export const SelectYearPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          <span
-            style={{
-              color: '#343A40',
-            }}
-          >
-            Архив
-          </span>{' '}
-          / {publisher?.name}
+          Архив / {publisher?.name}
         </div>
         <Form.Control
           type='text'

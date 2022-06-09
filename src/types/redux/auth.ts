@@ -12,14 +12,22 @@ export interface IAuthState {
   firstName: string
   lastName: string
   patronymicName: string
+
+  error: string | null
 }
 
 export enum AuthActionTypes {
   LOGIN = 'LOGIN',
   LOGOUT = 'LOGOUT',
+  CLEAR_ERROR = 'CLEAR_ERROR',
+  CHECK_IS_FAVORITE = 'CHECK_IS_FAVORITE',
 }
 
-export type AuthAction = ILoginAction | ILogoutAction
+export type AuthAction =
+  | ILoginAction
+  | ILogoutAction
+  | IClearErrorAction
+  | ICheckIsFavoriteAction
 
 interface ILoginAction {
   type: AuthActionTypes.LOGIN
@@ -29,4 +37,14 @@ interface ILoginAction {
 interface ILogoutAction {
   type: AuthActionTypes.LOGOUT
   payload: null
+}
+
+interface IClearErrorAction {
+  type: AuthActionTypes.CLEAR_ERROR
+  payload: null
+}
+
+interface ICheckIsFavoriteAction {
+  type: AuthActionTypes.CHECK_IS_FAVORITE
+  payload: INewspaper
 }
