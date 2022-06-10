@@ -186,15 +186,6 @@ export const logout = () => {
   }
 }
 
-export const clearError = () => {
-  return (dispatch: Dispatch<AuthAction>) => {
-    dispatch({
-      type: AuthActionTypes.CLEAR_ERROR,
-      payload: null,
-    })
-  }
-}
-
 export const checkIsFavorite = (newspaper: INewspaper) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     // fetch
@@ -202,6 +193,22 @@ export const checkIsFavorite = (newspaper: INewspaper) => {
     dispatch({
       type: AuthActionTypes.CHECK_IS_FAVORITE,
       payload: newspaper,
+    })
+  }
+}
+
+export const changeInfo = (information: {
+  firstName: string
+  lastName: string
+  patronymicName: string
+  email: string
+}) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    // fetch
+
+    dispatch({
+      type: AuthActionTypes.CHANGE_INFO,
+      payload: information,
     })
   }
 }

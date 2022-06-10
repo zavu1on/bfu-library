@@ -1,5 +1,5 @@
-import { FC, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { FC, useEffect, useState } from 'react'
+import { Container, Row, Col, Modal, Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { NewspaperCard } from '../components/NewspaperCard'
@@ -21,13 +21,27 @@ export const LMSPage: FC = () => {
     id,
     postsEdited,
   } = useTypedSelector(state => state.auth)
-  const { checkIsFavorite } = useActions()
+  const { checkIsFavorite, changeInfo, logout } = useActions()
   const navigate = useNavigate()
   const _ = useFormater()
+  const [showChangeInfoModal, setShowChangeInfoModal] = useState<boolean>(false)
+  const [infoFormData, setInfoFormData] = useState<{
+    firstName: string
+    lastName: string
+    patronymicName: string
+    email: string
+  }>({
+    firstName,
+    lastName,
+    patronymicName,
+    email,
+  })
 
   useEffect(() => {
     if (role === 'anonymous') navigate('/lms/login/')
+  }, [role])
 
+  useEffect(() => {
     document.body.setAttribute('style', 'background: #E5E5E5')
     return () => document.body.removeAttribute('style')
   }, [])
@@ -84,6 +98,26 @@ export const LMSPage: FC = () => {
                   <div className='value'>{postsEdited}</div>
                 </Col>
               </Row>
+              <div className='actions'>
+                <a
+                  href='#'
+                  onClick={e => {
+                    e.preventDefault()
+                    setShowChangeInfoModal(true)
+                  }}
+                >
+                  Изменить личную информацию
+                </a>
+                <a
+                  href='#'
+                  onClick={e => {
+                    e.preventDefault()
+                    logout()
+                  }}
+                >
+                  Выйти из аккаунта
+                </a>
+              </div>
             </div>
           </Col>
           <Col md={8} sm={12}>
@@ -108,6 +142,84 @@ export const LMSPage: FC = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal
+        show={showChangeInfoModal}
+        onHide={() => setShowChangeInfoModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Изменить личную информацию</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className='mb-3 inline-group'>
+              <Form.Label htmlFor='name' className='mb-0 mr-4'>
+                Имя
+              </Form.Label>
+              <Form.Control
+                type='text'
+                id='name'
+                value={infoFormData.firstName}
+                onChange={event =>
+                  setInfoFormData(fd => ({
+                    ...fd,
+                    firstName: event.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
+            <Form.Group className='mb-3 inline-group'>
+              <Form.Label htmlFor='lastName' className='mb-0 mr-4'>
+                Фамилия
+              </Form.Label>
+              <Form.Control
+                type='text'
+                id='lastName'
+                value={infoFormData.lastName}
+                onChange={event =>
+                  setInfoFormData(fd => ({
+                    ...fd,
+                    lastName: event.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
+            <Form.Group className='mb-3 inline-group'>
+              <Form.Label htmlFor='patronymicName' className='mb-0 mr-4'>
+                Фамилия
+              </Form.Label>
+              <Form.Control
+                type='text'
+                id='patronymicName'
+                value={infoFormData.patronymicName}
+                onChange={event =>
+                  setInfoFormData(fd => ({
+                    ...fd,
+                    patronymicName: event.target.value,
+                  }))
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant='secondary'
+            onClick={() => setShowChangeInfoModal(false)}
+          >
+            Отмена
+          </Button>
+          <Button
+            variant='dark'
+            onClick={() => {
+              changeInfo(infoFormData)
+              setShowChangeInfoModal(false)
+            }}
+          >
+            Отправить
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

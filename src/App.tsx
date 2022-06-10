@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     // todo check token
-    // todo login
+    // todo try login
   }, [])
 
   return routes

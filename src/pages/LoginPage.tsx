@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
-import { MyAlert } from '../components/MyAlert'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 
@@ -14,32 +13,18 @@ export const LoginPage: FC = () => {
     login: '',
     password: '',
   })
-  const [show, setShow] = useState<boolean>(false)
-  const { login, clearError } = useActions()
-  const { error, role } = useTypedSelector(state => state.auth)
+  const { login } = useActions()
+  const { role } = useTypedSelector(state => state.auth)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (error) setShow(true)
-
-    if (!error && role !== 'anonymous') navigate('/lms/')
-  }, [error, role])
+    if (role !== 'anonymous') navigate('/lms/')
+  }, [role])
 
   return (
     <>
       <Header />
       <div className='full'>
-        <MyAlert
-          show={show}
-          closeHandler={() => {
-            clearError()
-            setShow(false)
-          }}
-          variant='danger'
-          header='Упс. Что-то пошло не так'
-          text={error ?? ''}
-        />
-
         <div className='form-container'>
           <div className='form-type'>
             <Link to={'/lms/login/'} className='type-active'>
