@@ -4,21 +4,26 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { NewspaperCard } from '../components/NewspaperCard'
-import { useActions } from '../hooks/useActions'
 import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
+import { INewspaper } from '../types/library'
 
 export const SelectNewspaperPage: FC = () => {
   const { id, year } = useParams()
-  const { isLoading } = useTypedSelector(state => state.library)
-  const newspapers = useTypedSelector(state =>
-    state.library.newspapers.filter(
-      n =>
-        n.publisher.id === Number(id) &&
-        n.createdDate.getFullYear() === Number(year)
-    )
-  )
-  const { fetchLibrary } = useActions()
+  const {
+    isLoading,
+    newspapers,
+  }: {
+    isLoading: boolean
+    newspapers: INewspaper[]
+  } = {
+    newspapers: [],
+    isLoading: true,
+  }
+  /*
+    n.publisher.id === Number(id) &&
+    n.createdDate.getFullYear() === Number(year)
+  */
   const _ = useFormater()
   const navigate = useNavigate()
   const [formData, setFormData] = useState<{
@@ -28,8 +33,8 @@ export const SelectNewspaperPage: FC = () => {
     text: '',
     date: null,
   })
+
   useEffect(() => {
-    if (!newspapers.length) fetchLibrary()
     if (!isLoading && !newspapers.length) navigate('/not-found/')
   }, [])
 

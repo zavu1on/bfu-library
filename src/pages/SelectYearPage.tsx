@@ -4,20 +4,26 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
-import { useActions } from '../hooks/useActions'
-import { useTypedSelector } from '../hooks/useTypedSelector'
+import { IPublisher } from '../types/library'
 
 export const SelectYearPage: FC = () => {
   const { id } = useParams()
-  const { publishers, isLoading } = useTypedSelector(state => state.library)
-  const { fetchLibrary } = useActions()
+  const {
+    isLoading,
+    publisher,
+  }: {
+    isLoading: boolean
+    publisher: IPublisher | null
+  } = {
+    isLoading: false,
+    publisher: null,
+  }
+  // p.id === Number(id)
   const navigate = useNavigate()
   const [years, setYears] = useState<number[]>([])
   const [initialYears, setInitialYears] = useState<number[]>([])
-  const publisher = publishers.find(p => p.id === Number(id))
 
   useEffect(() => {
-    if (!publishers.length) fetchLibrary()
     if (!isLoading && !publisher) navigate('/not-found/')
 
     document.body.setAttribute('style', 'background: #E5E5E5')
@@ -26,7 +32,7 @@ export const SelectYearPage: FC = () => {
   }, [])
 
   useEffect(() => {
-    const years = publishers.find(p => p.id === Number(id))?.yearsOfWorking
+    const years = publisher?.yearsOfWorking
     if (!years) return
 
     const [start, end] = years.split(' - ')
@@ -39,7 +45,7 @@ export const SelectYearPage: FC = () => {
 
     setYears(arr)
     setInitialYears(arr)
-  }, [publishers.length])
+  }, [publisher])
 
   if (isLoading) return <Loader />
 

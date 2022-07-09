@@ -11,20 +11,32 @@ import PrismaZoom from 'react-prismazoom'
 import { MyAlert } from '../components/MyAlert'
 import star from '../static/star-black.svg'
 import starFill from '../static/star-fill-black.svg'
+import { INewspaper, IPage } from '../types/library'
 
 export const DetailNewspaperPage: FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { isLoading, newspapers } = useTypedSelector(state => state.library)
+  const {
+    isLoading,
+    newspapers,
+    pages,
+  }: {
+    isLoading: boolean
+    newspapers: INewspaper[]
+    pages: IPage[]
+  } = {
+    isLoading: true,
+    newspapers: [],
+    pages: [],
+  }
   const { role, favorites } = useTypedSelector(state => state.auth)
-  const { fetchLibrary, checkIsFavorite } = useActions()
+  const { checkIsFavorite } = useActions()
   const _ = useFormater()
   const newspaper = newspapers.find(n => n.id === Number(id))
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!newspapers.length) fetchLibrary()
     if (!isLoading && !newspaper) navigate('/not-found/')
   }, [])
 
@@ -103,7 +115,7 @@ export const DetailNewspaperPage: FC = () => {
             </button>
           ) : null}
         </h4>
-        {newspaper?.pages.map((p, idx) => (
+        {pages.map((p, idx) => (
           <Row
             key={idx}
             className='page-container'

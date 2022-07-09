@@ -8,6 +8,7 @@ import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import reader from '../static/reader.svg'
 import editor from '../static/editor.svg'
+// todo добавить ссылку на ArchivePage
 
 export const LMSPage: FC = () => {
   const {

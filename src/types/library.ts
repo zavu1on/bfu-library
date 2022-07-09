@@ -1,4 +1,4 @@
-interface IPage {
+export interface IPage {
   imageUrl: string
   text: string
 }
@@ -17,7 +17,6 @@ export interface INewspaper {
   name: string
   createdDate: Date
   publisher: IPublisher
-  pages: IPage[]
   tags: string[]
   isImportant: boolean
   category: string // для подборок

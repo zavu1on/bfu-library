@@ -1,20 +1,33 @@
 import { FC, useEffect, useState } from 'react'
 import { Header } from '../components/Header'
-import { useActions } from '../hooks/useActions'
-import { useTypedSelector } from '../hooks/useTypedSelector'
-import { Loader } from '../components/Loader'
 import { Container, Row, Carousel } from 'react-bootstrap'
 import { INewspaper } from '../types/library'
 import { NewspaperCard } from '../components/NewspaperCard'
 import { useFormater } from '../hooks/useFormater'
+import { Loader } from '../components/Loader'
 
 export const CategoryPage: FC = () => {
-  const { isLoading, newspapers, categories } = useTypedSelector(
-    state => state.library
-  )
-  const { fetchLibrary } = useActions()
+  const {
+    isLoading,
+    newspapers,
+    categories,
+  }: {
+    isLoading: boolean
+    newspapers: INewspaper[]
+    categories: string[]
+  } = {
+    isLoading: false,
+    newspapers: [],
+    categories: [],
+  }
   const [index, setIndex] = useState(0)
   const _ = useFormater()
+
+  useEffect(() => {
+    document.body.setAttribute('style', 'background: #E5E5E5')
+
+    return () => document.body.removeAttribute('style')
+  }, [])
 
   const handleSelect = (selectedIndex: number) => setIndex(selectedIndex)
 
@@ -29,13 +42,6 @@ export const CategoryPage: FC = () => {
 
     return resp
   }
-
-  useEffect(() => {
-    if (!newspapers.length) fetchLibrary()
-    document.body.setAttribute('style', 'background: #E5E5E5')
-
-    return () => document.body.removeAttribute('style')
-  }, [])
 
   if (isLoading) return <Loader />
 

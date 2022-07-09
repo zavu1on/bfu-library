@@ -1,22 +1,25 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Header } from '../components/Header'
-import { useActions } from '../hooks/useActions'
-import { useTypedSelector } from '../hooks/useTypedSelector'
 import { Loader } from '../components/Loader'
 import { Link, useNavigate } from 'react-router-dom'
+import { INewspaper, IPublisher } from '../types/library'
 
 export const ArchivePage: FC = () => {
-  const { isLoading, newspapers, publishers } = useTypedSelector(
-    state => state.library
-  )
-  const importantNewspapers = newspapers.filter(n => n.isImportant)
-  const { fetchLibrary } = useActions()
+  const {
+    isLoading,
+    importantNewspapers,
+    publishers,
+  }: {
+    isLoading: boolean
+    importantNewspapers: INewspaper[]
+    publishers: IPublisher[]
+  } = {
+    isLoading: false,
+    importantNewspapers: [],
+    publishers: [],
+  }
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!publishers.length) fetchLibrary()
-  }, [])
 
   if (isLoading) return <Loader />
 
