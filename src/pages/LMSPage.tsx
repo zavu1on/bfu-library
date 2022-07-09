@@ -216,7 +216,7 @@ export const LMSPage: FC = () => {
               setShowChangeInfoModal(false)
             }}
           >
-            Отправить
+            Сохранить
           </Button>
         </Modal.Footer>
       </Modal>
