@@ -8,7 +8,9 @@ interface IProps {
   imageUrl: string
   alt: string
   date: number | string
-  tags?: string[]
+  tags?: {
+    name: string
+  }[]
   size: number
   link: string
   tagsClassName?: string
@@ -53,8 +55,8 @@ export const NewspaperCard: FC<IProps> = ({
         </div>
         <div className={'tags-container ' + tagsClassName}>
           {tags.map(t => (
-            <div className='tags-item' key={t}>
-              <span>{t}</span>
+            <div className='tags-item' key={t.name}>
+              <span>{t.name}</span>
             </div>
           ))}
         </div>

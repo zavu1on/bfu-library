@@ -1,25 +1,28 @@
 import { FC, useEffect, useState } from 'react'
 import { Header } from '../components/Header'
 import { Container, Row, Carousel } from 'react-bootstrap'
-import { INewspaper } from '../types/library'
+import { ICategory, INewspaper } from '../types/library'
 import { NewspaperCard } from '../components/NewspaperCard'
 import { useFormater } from '../hooks/useFormater'
 import { Loader } from '../components/Loader'
+import { useQuery } from 'react-query'
+import api from '../api'
+import { AxiosResponse } from 'axios'
 
 export const CategoryPage: FC = () => {
-  const {
-    isLoading,
-    newspapers,
-    categories,
-  }: {
-    isLoading: boolean
-    newspapers: INewspaper[]
-    categories: string[]
-  } = {
-    isLoading: false,
-    newspapers: [],
-    categories: [],
-  }
+  const { isLoading: isCategoriesLoading, data: categories } = useQuery(
+    'categories',
+    async (): Promise<AxiosResponse<ICategory[]>> => {
+      return await api.get('library/categories/all/')
+    }
+  )
+  const { isLoading: isNewspapersLoading, data: newspapers } = useQuery(
+    'newspapersWithCategories',
+    async (): Promise<AxiosResponse<INewspaper[]>> => {
+      return await api.get('/library/newspapers/all/?category=True')
+    }
+  )
+
   const [index, setIndex] = useState(0)
   const _ = useFormater()
 
@@ -43,7 +46,7 @@ export const CategoryPage: FC = () => {
     return resp
   }
 
-  if (isLoading) return <Loader />
+  if (isCategoriesLoading || isNewspapersLoading) return <Loader />
 
   return (
     <>
@@ -51,13 +54,17 @@ export const CategoryPage: FC = () => {
       <Container>
         <h1>Подборки</h1>
       </Container>
-      {categories.map(category => (
-        <div className='publishers' key={category} style={{ marginTop: 56 }}>
+      {categories?.data.map(category => (
+        <div
+          className='publishers'
+          key={category?.name}
+          style={{ marginTop: 56 }}
+        >
           <Container className='publishers-container'>
-            <h4>{category}</h4>
+            <h4>{category?.name}</h4>
             <Carousel activeIndex={index} onSelect={handleSelect}>
               {splitNewspapers(
-                newspapers.filter(n => n.category === category)
+                newspapers!.data.filter(n => n.category.name === category?.name)
               ).map(qs => (
                 <Carousel.Item key={`item-${qs[0].id}`}>
                   <Row>
@@ -65,9 +72,9 @@ export const CategoryPage: FC = () => {
                       <NewspaperCard
                         key={n.id}
                         id={n.id}
-                        imageUrl={n.previewImageUrl}
+                        imageUrl={n.preview_image}
                         alt={n.name}
-                        date={_(n.createdDate)}
+                        date={_(n.created_date)}
                         size={3}
                         link={`/archive/newspapers/${n.id}/`}
                         tags={n.tags}

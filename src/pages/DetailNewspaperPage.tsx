@@ -12,38 +12,39 @@ import { MyAlert } from '../components/MyAlert'
 import star from '../static/star-black.svg'
 import starFill from '../static/star-fill-black.svg'
 import { INewspaper, IPage } from '../types/library'
+import { useQuery } from 'react-query'
+import api from '../api'
+import { AxiosResponse } from 'axios'
 
 export const DetailNewspaperPage: FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const {
-    isLoading,
-    newspapers,
-    pages,
-  }: {
-    isLoading: boolean
-    newspapers: INewspaper[]
-    pages: IPage[]
-  } = {
-    isLoading: true,
-    newspapers: [],
-    pages: [],
-  }
+  const { isLoading: isNewspaperLoading, data: newspaper } = useQuery(
+    ['newspaper', id],
+    async (): Promise<AxiosResponse<INewspaper>> => {
+      return await api.get(`/library/newspapers/get/${id}`)
+    }
+  )
+  const { isLoading: isPagesLoading, data: pages } = useQuery(
+    ['pages', id],
+    async (): Promise<AxiosResponse<IPage[]>> => {
+      return await api.get(`/library/pages/all/${id}`)
+    }
+  )
   const { role, favorites } = useTypedSelector(state => state.auth)
   const { checkIsFavorite } = useActions()
   const _ = useFormater()
-  const newspaper = newspapers.find(n => n.id === Number(id))
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!isLoading && !newspaper) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper) navigate('/not-found/')
   }, [])
 
   useEffect(() => {
-    if (!isLoading && !newspaper) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper) navigate('/not-found/')
 
-    if (!isLoading) {
+    if (!isNewspaperLoading) {
       setTimeout(() => {
         document.querySelectorAll('.img-container img').forEach(img => {
           const textContainer = document.querySelector(
@@ -55,13 +56,21 @@ export const DetailNewspaperPage: FC = () => {
         })
       }, 100)
     }
-  }, [isLoading])
+  }, [isNewspaperLoading])
 
   const handleCloseModal = () => setShowModal(false)
 
-  const handleShowModal = () => setShowModal(true)
+  const handleShowModal = async () => {
+    await api.post('/make-permissions/')
 
-  if (isLoading) return <Loader />
+    if (role === 'Editor') {
+      window.location.replace(`/admin/api/page/${id}/`)
+    }
+
+    setShowModal(true)
+  }
+
+  if (isNewspaperLoading || isPagesLoading) return <Loader />
 
   return (
     <>
@@ -74,7 +83,8 @@ export const DetailNewspaperPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          Архив / {newspaper?.publisher.name} / {_(newspaper?.createdDate!)}
+          Архив / {newspaper?.data?.publisher.name} /{' '}
+          {_(newspaper?.data?.created_date!)}
         </div>
 
         <MyAlert
@@ -90,8 +100,8 @@ export const DetailNewspaperPage: FC = () => {
         />
 
         <h4 style={{ marginTop: 70 }}>
-          {newspaper?.publisher.name}, {_(newspaper?.createdDate!)}{' '}
-          {role !== 'anonymous' ? (
+          {newspaper?.data?.publisher.name}, {_(newspaper?.data?.created_date!)}{' '}
+          {role !== 'Unanimous' ? (
             <button
               className='star'
               style={{
@@ -99,11 +109,11 @@ export const DetailNewspaperPage: FC = () => {
                 right: 0,
                 bottom: 2,
               }}
-              onClick={() => checkIsFavorite(newspaper!)}
+              onClick={() => checkIsFavorite(newspaper!.data)}
             >
               <img
                 src={
-                  !!favorites.find(f => f.id === newspaper?.id)
+                  !!favorites.find(f => f.id === newspaper?.data?.id)
                     ? starFill
                     : star
                 }
@@ -115,7 +125,7 @@ export const DetailNewspaperPage: FC = () => {
             </button>
           ) : null}
         </h4>
-        {pages.map((p, idx) => (
+        {pages?.data.map((p, idx) => (
           <Row
             key={idx}
             className='page-container'
@@ -130,7 +140,15 @@ export const DetailNewspaperPage: FC = () => {
             </Col>
             <Col md={5} className='img-container'>
               <PrismaZoom allowTouchEvents={true}>
-                <img src={p.imageUrl} alt='page image' id={idx.toString()} />
+                <img
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                  src={p.image}
+                  alt='page image'
+                  id={idx.toString()}
+                />
               </PrismaZoom>
             </Col>
             <Col

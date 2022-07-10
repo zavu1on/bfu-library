@@ -18,7 +18,7 @@ export const LoginPage: FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (role !== 'anonymous') navigate('/lms/')
+    if (role !== 'Unanimous') navigate('/lms/')
   }, [role])
 
   return (

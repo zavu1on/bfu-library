@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Container, Row, Col, Modal, Form, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { NewspaperCard } from '../components/NewspaperCard'
 import { useActions } from '../hooks/useActions'
@@ -8,7 +8,7 @@ import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import reader from '../static/reader.svg'
 import editor from '../static/editor.svg'
-// todo добавить ссылку на ArchivePage
+import api from '../api'
 
 export const LMSPage: FC = () => {
   const {
@@ -20,7 +20,6 @@ export const LMSPage: FC = () => {
     login,
     email,
     id,
-    postsEdited,
   } = useTypedSelector(state => state.auth)
   const { checkIsFavorite, changeInfo, logout } = useActions()
   const navigate = useNavigate()
@@ -39,7 +38,7 @@ export const LMSPage: FC = () => {
   })
 
   useEffect(() => {
-    if (role === 'anonymous') navigate('/lms/login/')
+    if (role === 'Unanimous') navigate('/lms/login/')
   }, [role])
 
   useEffect(() => {
@@ -85,21 +84,36 @@ export const LMSPage: FC = () => {
                   <div className='value'>{email}</div>
                 </Col>
               </Row>
-              <h6>
-                Редактор
-                <img src={editor} alt='editor' className='icon' />
-              </h6>
-              <Row className='white-scroll'>
-                <Col sm={6}>
-                  <div className='name'>ID</div>
-                  <div className='value'>{id}</div>
-                </Col>
-                <Col sm={6}>
-                  <div className='name'>Всего отредактировано</div>
-                  <div className='value'>{postsEdited}</div>
-                </Col>
-              </Row>
+              {role === 'Editor' ? (
+                <>
+                  <h6>
+                    Редактор
+                    <img src={editor} alt='editor' className='icon' />
+                  </h6>
+                  <Row className='white-scroll'>
+                    <Col sm={12}>
+                      <div className='name'>ID</div>
+                      <div className='value'>{id}</div>
+                    </Col>
+                  </Row>
+                </>
+              ) : null}
               <div className='actions'>
+                <Link to='/'>На главную</Link>
+                {role === 'Editor' ? (
+                  <a
+                    href='#'
+                    target='_blank'
+                    onClick={async e => {
+                      e.preventDefault()
+                      await api.post('/make-permissions/')
+
+                      window.location.replace('/admin/api/page/')
+                    }}
+                  >
+                    Редактировать выпуски
+                  </a>
+                ) : null}
                 <a
                   href='#'
                   onClick={e => {
@@ -128,9 +142,9 @@ export const LMSPage: FC = () => {
                 <NewspaperCard
                   key={n.id}
                   id={n.id}
-                  imageUrl={n.previewImageUrl}
+                  imageUrl={n.preview_image}
                   alt={n.name}
-                  date={_(n.createdDate)}
+                  date={_(n.created_date)}
                   size={6}
                   link={`/archive/newspapers/${n.id}/`}
                   tags={n.tags}

@@ -38,7 +38,7 @@ export const login = (login: string, password: string) => {
         payload: {
           login: '',
           id: -1,
-          role: 'anonymous',
+          role: 'Unanimous',
           email: '',
 
           favorites: [],
@@ -68,6 +68,9 @@ export const logout = () => {
 export const checkIsFavorite = (newspaper: INewspaper) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     // fetch
+    await api.post('/library/toggle-newspaper-is-favorite/', {
+      id: newspaper.id,
+    })
 
     dispatch({
       type: AuthActionTypes.CHECK_IS_FAVORITE,

@@ -1,5 +1,5 @@
 import { INewspaper } from './../library'
-type Role = 'anonymous' | 'reader' | 'editor' | 'admin'
+type Role = 'Unanimous' | 'Reader' | 'Editor' | 'Admin' | 'Superuser'
 
 export interface IAuthState {
   id: number
@@ -7,7 +7,6 @@ export interface IAuthState {
   email: string
   role: Role
   favorites: INewspaper[]
-  postsEdited: number // for editor and admin
 
   firstName: string
   lastName: string

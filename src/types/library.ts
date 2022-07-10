@@ -1,5 +1,6 @@
 export interface IPage {
-  imageUrl: string
+  id: number
+  image: string
   text: string
 }
 
@@ -7,18 +8,26 @@ export interface IPublisher {
   id: number
   name: string
   description: string
-  yearsOfWorking: string // '1987 - 2000'
-  numOfNewspapers: number
-  previewImageUrl: string
+  years_of_working: string // '1987 - 2000'
+  num_of_newspapers: number
+  preview_image: string
+}
+
+export interface ICategory {
+  name: string
+}
+
+export interface ITag {
+  name: string
 }
 
 export interface INewspaper {
   id: number
   name: string
-  createdDate: Date
+  created_date: string
   publisher: IPublisher
-  tags: string[]
-  isImportant: boolean
-  category: string // для подборок
-  previewImageUrl: string
+  tags: ITag[]
+  is_important: boolean
+  category: ICategory // для подборок
+  preview_image: string
 }

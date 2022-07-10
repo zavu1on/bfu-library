@@ -8,9 +8,8 @@ const initialState: IAuthState = {
   id: -1,
   login: '',
   email: '',
-  role: 'anonymous',
+  role: 'Unanimous',
   favorites: [],
-  postsEdited: 0,
 
   firstName: '',
   lastName: '',
@@ -29,9 +28,8 @@ export const authReducer = (
         id: -1,
         login: '',
         email: '',
-        role: 'anonymous',
+        role: 'Unanimous',
         favorites: [],
-        postsEdited: 0,
 
         firstName: '',
         lastName: '',

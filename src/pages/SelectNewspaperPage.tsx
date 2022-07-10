@@ -1,29 +1,26 @@
 import { FC, useEffect, useState } from 'react'
 import { Row, Col, Container, Form } from 'react-bootstrap'
+import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { NewspaperCard } from '../components/NewspaperCard'
 import { useFormater } from '../hooks/useFormater'
-import { useTypedSelector } from '../hooks/useTypedSelector'
 import { INewspaper } from '../types/library'
+import api from '../api'
+import { AxiosResponse } from 'axios'
 
 export const SelectNewspaperPage: FC = () => {
   const { id, year } = useParams()
-  const {
-    isLoading,
-    newspapers,
-  }: {
-    isLoading: boolean
-    newspapers: INewspaper[]
-  } = {
-    newspapers: [],
-    isLoading: true,
-  }
-  /*
-    n.publisher.id === Number(id) &&
-    n.createdDate.getFullYear() === Number(year)
-  */
+  const { isLoading, data: newspapers } = useQuery(
+    ['newspaper', id, year],
+    async (): Promise<AxiosResponse<INewspaper[]>> => {
+      return await api.get(
+        `/library/newspapers/all/?publisher=${id}&created_date=${year}`
+      )
+    }
+  )
+
   const _ = useFormater()
   const navigate = useNavigate()
   const [formData, setFormData] = useState<{
@@ -35,7 +32,7 @@ export const SelectNewspaperPage: FC = () => {
   })
 
   useEffect(() => {
-    if (!isLoading && !newspapers.length) navigate('/not-found/')
+    if (!isLoading && !newspapers?.data.length) navigate('/not-found/')
   }, [])
 
   if (isLoading) return <Loader />
@@ -51,10 +48,10 @@ export const SelectNewspaperPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          Архив / {newspapers[0]?.publisher.name} / {year}
+          Архив / {newspapers!.data[0]!.publisher.name} / {year}
         </div>
         <h1>
-          {newspapers[0]?.publisher.name}. {year} год
+          {newspapers!.data[0]!.publisher.name}. {year} год
         </h1>
         <Row>
           <Col md={3}>
@@ -90,27 +87,29 @@ export const SelectNewspaperPage: FC = () => {
           </Col>
           <Col md={9}>
             <Row>
-              {newspapers
+              {newspapers?.data
                 .filter(n => {
                   if (!(!!formData.text.length || !!formData.date)) {
                     return true
                   }
 
                   return (
-                    (n.createdDate.getFullYear() ===
+                    (new Date(n.created_date).getFullYear() ===
                       formData.date?.getFullYear() &&
-                      n.createdDate.getMonth() === formData.date?.getMonth() &&
-                      n.createdDate.getDate() === formData.date?.getDate()) ||
-                    n.tags.indexOf(formData.text) + 1
+                      new Date(n.created_date).getMonth() ===
+                        formData.date?.getMonth() &&
+                      new Date(n.created_date).getDate() ===
+                        formData.date?.getDate()) ||
+                    n.tags.filter(t => t.name === formData.text).length
                   )
                 })
                 .map(n => (
                   <NewspaperCard
                     key={n.id}
                     id={n.id}
-                    imageUrl={n.previewImageUrl}
+                    imageUrl={n.preview_image}
                     alt={n.name}
-                    date={_(n.createdDate)}
+                    date={_(n.created_date)}
                     size={4}
                     link={`/archive/newspapers/${n.id}/`}
                     tags={n.tags}

@@ -22,7 +22,6 @@ $api.interceptors.response.use(
       // @ts-ignore
       error.response?.data.detail ===
         'Ошибка авторизации. Время жизни токена истекло!' &&
-      error.config &&
       // @ts-ignore
       !error._isRetry
     ) {
@@ -31,9 +30,9 @@ $api.interceptors.response.use(
 
       try {
         const resp = await axios.post(
-          '/api/auth/refresh/',
+          '/api/auth/refresh-token/',
           {
-            refresh_token: localStorage.getItem('refresh'),
+            token: localStorage.getItem('refresh'),
           },
           {
             headers: {

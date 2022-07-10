@@ -2,11 +2,14 @@ import { useEffect } from 'react'
 import { useRouter } from './hooks/useRouter'
 import { useDispatch } from 'react-redux'
 import { AuthActionTypes } from './types/redux/auth'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import api from './api'
 
 function App() {
   const routes = useRouter()
   const dispatch = useDispatch()
+
+  const client = new QueryClient()
 
   useEffect(() => {
     if (!!localStorage.getItem('access')) {
@@ -14,7 +17,7 @@ function App() {
         dispatch({
           type: AuthActionTypes.LOGIN,
           payload: {
-            login: resp.data.login,
+            login: resp.data.username,
             id: 1,
             role: resp.data.role,
             email: resp.data.email,
@@ -31,7 +34,7 @@ function App() {
     }
   }, [])
 
-  return routes
+  return <QueryClientProvider client={client}>{routes}</QueryClientProvider>
 }
 
 export default App

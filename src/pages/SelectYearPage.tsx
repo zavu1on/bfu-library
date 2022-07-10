@@ -1,24 +1,23 @@
 import { FC, useEffect, useState } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
+import { useQuery } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { IPublisher } from '../types/library'
+import api from '../api'
+import { AxiosResponse } from 'axios'
 
 export const SelectYearPage: FC = () => {
   const { id } = useParams()
-  const {
-    isLoading,
-    publisher,
-  }: {
-    isLoading: boolean
-    publisher: IPublisher | null
-  } = {
-    isLoading: false,
-    publisher: null,
-  }
-  // p.id === Number(id)
+  const { isLoading, data: publisher } = useQuery(
+    ['publisher', id],
+    async (): Promise<AxiosResponse<IPublisher>> => {
+      return await api.get(`/library/publishers/get/${id}/`)
+    }
+  )
+
   const navigate = useNavigate()
   const [years, setYears] = useState<number[]>([])
   const [initialYears, setInitialYears] = useState<number[]>([])
@@ -32,10 +31,12 @@ export const SelectYearPage: FC = () => {
   }, [])
 
   useEffect(() => {
-    const years = publisher?.yearsOfWorking
+    const years = publisher?.data.years_of_working
+
     if (!years) return
 
     const [start, end] = years.split(' - ')
+
     const arr = []
 
     for (let i = 0; i < Number(end) - Number(start); i++) {
@@ -60,7 +61,7 @@ export const SelectYearPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          Архив / {publisher?.name}
+          Архив / {publisher?.data.name}
         </div>
         <Form.Control
           type='text'
@@ -90,7 +91,7 @@ export const SelectYearPage: FC = () => {
             <Col key={year} sm={4} className='publisher-year-col'>
               <Link to={`/archive/publishers/${id}/${year}/`}>
                 <img
-                  src={publisher?.previewImageUrl}
+                  src={publisher?.data.preview_image}
                   alt={year.toString()}
                   className='squared-img'
                   style={{
