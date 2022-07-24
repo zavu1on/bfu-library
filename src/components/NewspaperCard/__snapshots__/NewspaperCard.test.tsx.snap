@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewspaperCard Карточка с тегами 1`] = `
+NodeList [
+  <div
+    class="tags-item"
+  >
+    <span>
+      Кино
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Игры
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Фантастика
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Тренд
+    </span>
+  </div>,
+]
+`;
+
+exports[`NewspaperCard Карточка с тегами, отмечена избранной 1`] = `
+NodeList [
+  <div
+    class="tags-item"
+  >
+    <span>
+      Кино
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Игры
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Фантастика
+    </span>
+  </div>,
+  <div
+    class="tags-item"
+  >
+    <span>
+      Тренд
+    </span>
+  </div>,
+]
+`;

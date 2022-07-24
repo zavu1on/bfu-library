@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Страница Архива 1`] = `
+<a
+  class="nav-link active"
+  data-rr-ui-event-key="/archive/"
+  href="#"
+  role="button"
+  tabindex="0"
+>
+  Архив
+</a>
+`;
+
+exports[`Header Страница Архива 2`] = `
+<a
+  class="nav-link"
+  data-rr-ui-event-key="/categories/"
+  href="#"
+  role="button"
+  tabindex="0"
+>
+  Подборки
+</a>
+`;
+
+exports[`Header Страница Подборок 1`] = `
+<a
+  class="nav-link active"
+  data-rr-ui-event-key="/categories/"
+  href="#"
+  role="button"
+  tabindex="0"
+>
+  Подборки
+</a>
+`;
+
+exports[`Header Страница Подборок 2`] = `
+<a
+  class="nav-link"
+  data-rr-ui-event-key="/learning-material/"
+  href="#"
+  role="button"
+  tabindex="0"
+>
+  Учебные материалы
+</a>
+`;
+
+exports[`Header Страница Учебных материалов 1`] = `
+<a
+  class="nav-link active"
+  data-rr-ui-event-key="/learning-material/"
+  href="#"
+  role="button"
+  tabindex="0"
+>
+  Учебные материалы
+</a>
+`;

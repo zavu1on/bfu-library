@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { Header } from '../components/Header'
+import { Header } from '../components/Header/Header'
 import { Loader } from '../components/Loader'
 import { Link, useNavigate } from 'react-router-dom'
 import { INewspaper, IPublisher } from '../types/library'
