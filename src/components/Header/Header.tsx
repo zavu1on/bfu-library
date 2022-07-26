@@ -14,6 +14,9 @@ export const Header: FC = () => {
       }}
     >
       <Nav.Item>
+        <Nav.Link eventKey='/'>Лендинг</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link eventKey='/archive/'>Архив</Nav.Link>
       </Nav.Item>
       <Nav.Item>
