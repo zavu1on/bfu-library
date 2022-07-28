@@ -12,7 +12,8 @@ import { ILearningMaterial } from '../types/library'
 import { useQuery } from 'react-query'
 import api from '../api'
 import { AxiosResponse } from 'axios'
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+// @ts-ignore
+import { PDFReader } from 'reactjs-pdf-reader'
 
 export const DetailLearningMaterialPage: FC = () => {
   const { id } = useParams()
@@ -90,22 +91,11 @@ export const DetailLearningMaterialPage: FC = () => {
         </h4>
 
         <div className='center'>
-          <Document
-            file={learningMaterial?.data.file}
-            onLoadSuccess={proxy => setPages(proxy.numPages)}
-          >
-            {!!pages
-              ? new Array(pages)
-                  .fill(null)
-                  .map((_, idx) => (
-                    <Page
-                      key={idx}
-                      pageNumber={idx + 1}
-                      renderTextLayer={false}
-                    />
-                  ))
-              : null}
-          </Document>
+          <PDFReader
+            url={learningMaterial?.data.file}
+            showAllPage={true}
+            scale={1.2}
+          />
         </div>
 
         <div style={{ height: 100 }}></div>
