@@ -9,7 +9,8 @@ const initialState: IAuthState = {
   login: '',
   email: '',
   role: 'Unanimous',
-  favorites: [],
+  favoriteNewspapers: [],
+  favoriteLearningMaterials: [],
 
   firstName: '',
   lastName: '',
@@ -29,22 +30,43 @@ export const authReducer = (
         login: '',
         email: '',
         role: 'Unanimous',
-        favorites: [],
+        favoriteNewspapers: [],
+        favoriteLearningMaterials: [],
 
         firstName: '',
         lastName: '',
         patronymicName: '',
       }
-    case AuthActionTypes.CHECK_IS_FAVORITE:
-      if (!!state.favorites.find(f => f.id === action.payload.id))
+    case AuthActionTypes.CHECK_NEWSPAPER_IS_FAVORITE:
+      if (!!state.favoriteNewspapers.find(f => f.id === action.payload.id))
         return {
           ...state,
-          favorites: state.favorites.filter(f => f.id !== action.payload.id),
+          favoriteNewspapers: state.favoriteNewspapers.filter(
+            f => f.id !== action.payload.id
+          ),
         }
 
       return {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favoriteNewspapers: [...state.favoriteNewspapers, action.payload],
+      }
+    case AuthActionTypes.CHECK_LM_IS_FAVORITE:
+      if (
+        !!state.favoriteLearningMaterials.find(f => f.id === action.payload.id)
+      )
+        return {
+          ...state,
+          favoriteLearningMaterials: state.favoriteLearningMaterials.filter(
+            f => f.id !== action.payload.id
+          ),
+        }
+
+      return {
+        ...state,
+        favoriteLearningMaterials: [
+          ...state.favoriteLearningMaterials,
+          action.payload,
+        ],
       }
     case AuthActionTypes.CHANGE_INFO:
       return {

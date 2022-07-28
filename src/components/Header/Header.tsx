@@ -23,7 +23,7 @@ export const Header: FC = () => {
         <Nav.Link eventKey='/categories/'>Подборки</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey='/learning-material/'>Учебные материалы</Nav.Link>
+        <Nav.Link eventKey='/learning-materials/'>Учебные материалы</Nav.Link>
       </Nav.Item>
       <Nav.Item className='lms'>
         <Nav.Link eventKey='/lms/'>Личный кабинет</Nav.Link>

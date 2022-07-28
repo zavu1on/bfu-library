@@ -46,8 +46,8 @@ describe('Header', () => {
     render(
       <BrowserRouter>
         <Routes>
-          <Route path='/learning-material/' element={<Header />} />
-          <Route path='*' element={<Navigate to={'/learning-material/'} />} />
+          <Route path='/learning-materials/' element={<Header />} />
+          <Route path='*' element={<Navigate to={'/learning-materials/'} />} />
         </Routes>
       </BrowserRouter>
     )

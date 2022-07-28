@@ -23,7 +23,7 @@ export const SelectYearPage: FC = () => {
   const [initialYears, setInitialYears] = useState<number[]>([])
 
   useEffect(() => {
-    if (!isLoading && !publisher) navigate('/not-found/')
+    if (!isLoading && !publisher?.data) navigate('/not-found/')
 
     document.body.setAttribute('style', 'background: #E5E5E5')
 

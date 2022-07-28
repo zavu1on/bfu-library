@@ -9,6 +9,8 @@ import { NotFoundPage } from '../pages/NotFoundPage'
 import { LMSPage } from '../pages/LMSPage'
 import { LoginPage } from '../pages/LoginPage'
 import { RegistrationPage } from '../pages/RegistrationPage'
+import { ListLearningMaterialPage } from '../pages/ListLearningMaterialPage'
+import { DetailLearningMaterialPage } from '../pages/DetailLearningMaterialPage'
 
 export const useRouter = () => {
   return (
@@ -31,6 +33,16 @@ export const useRouter = () => {
         <Route path='/lms/register/' element={<RegistrationPage />} />
 
         <Route path='/categories/' element={<CategoryPage />} />
+
+        <Route
+          path='/learning-materials/'
+          element={<ListLearningMaterialPage />}
+        />
+        <Route
+          path='/learning-materials/:id/'
+          element={<DetailLearningMaterialPage />}
+        />
+
         <Route path='/not-found/' element={<NotFoundPage />} />
         <Route path='*' element={<Navigate to='/not-found/' />} />
       </Routes>

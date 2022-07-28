@@ -94,6 +94,21 @@ h3.text-title {
   font-size: 16px;
 }
 
+.link-text {
+  color: var(--bs-body-color);
+
+  &:hover {
+    color: var(--bs-body-color);
+    text-decoration: underline;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   margin-top: -10px;
   width: 100%;
@@ -190,6 +205,10 @@ header {
     span {
       display: block;
       margin-top: 8px;
+    }
+
+    @media screen and (max-width: 1140px) {
+      margin-top: 60px;
     }
   }
 
@@ -478,7 +497,7 @@ aside {
     padding: 0;
   }
 
-  @media screen and (max-width: 630px) {
+  @media screen and (max-width: 750px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -590,7 +609,6 @@ aside {
 }
 
 .publisher-year-col {
-  margin-top: calc(var(--bs-gutter-x) * 0.5);
   position: relative;
 
   .text {
@@ -628,6 +646,12 @@ footer {
       color: $white;
       text-decoration: underline;
     }
+  }
+}
+
+.margin-on-phone {
+  @media screen and (max-width: 770px) {
+    margin-top: calc(var(--bs-gutter-x) * 0.5);
   }
 }
 

@@ -1,4 +1,4 @@
-import { INewspaper } from './../library'
+import { INewspaper, ILearningMaterial } from './../library'
 type Role = 'Unanimous' | 'Reader' | 'Editor' | 'Admin' | 'Superuser'
 
 export interface IAuthState {
@@ -6,7 +6,8 @@ export interface IAuthState {
   login: string
   email: string
   role: Role
-  favorites: INewspaper[]
+  favoriteNewspapers: INewspaper[]
+  favoriteLearningMaterials: ILearningMaterial[]
 
   firstName: string
   lastName: string
@@ -16,15 +17,17 @@ export interface IAuthState {
 export enum AuthActionTypes {
   LOGIN = 'LOGIN',
   LOGOUT = 'LOGOUT',
-  CHECK_IS_FAVORITE = 'CHECK_IS_FAVORITE',
+  CHECK_NEWSPAPER_IS_FAVORITE = 'CHECK_NEWSPAPER_IS_FAVORITE',
+  CHECK_LM_IS_FAVORITE = 'CHECK_LM_IS_FAVORITE',
   CHANGE_INFO = 'CHANGE_INFO',
 }
 
 export type AuthAction =
   | ILoginAction
   | ILogoutAction
-  | ICheckIsFavoriteAction
+  | ICheckNewspaperIsFavoriteAction
   | IChangeInfoAction
+  | ICheckLMIsFavoriteAction
 
 interface ILoginAction {
   type: AuthActionTypes.LOGIN
@@ -36,9 +39,14 @@ interface ILogoutAction {
   payload: null
 }
 
-interface ICheckIsFavoriteAction {
-  type: AuthActionTypes.CHECK_IS_FAVORITE
+interface ICheckNewspaperIsFavoriteAction {
+  type: AuthActionTypes.CHECK_NEWSPAPER_IS_FAVORITE
   payload: INewspaper
+}
+
+interface ICheckLMIsFavoriteAction {
+  type: AuthActionTypes.CHECK_LM_IS_FAVORITE
+  payload: ILearningMaterial
 }
 
 interface IChangeInfoAction {

@@ -9,11 +9,13 @@ import { useTypedSelector } from '../hooks/useTypedSelector'
 import reader from '../static/reader.svg'
 import editor from '../static/editor.svg'
 import api from '../api'
+import { LearningMaterialCard } from '../components/LearningMaterialCard/LearningMaterialCard'
 
 export const LMSPage: FC = () => {
   const {
     role,
-    favorites,
+    favoriteNewspapers,
+    favoriteLearningMaterials,
     firstName,
     lastName,
     patronymicName,
@@ -21,7 +23,12 @@ export const LMSPage: FC = () => {
     email,
     id,
   } = useTypedSelector(state => state.auth)
-  const { checkIsFavorite, changeInfo, logout } = useActions()
+  const {
+    checkNewspaperIsFavorite,
+    checkLearningMaterialIsFavorite,
+    changeInfo,
+    logout,
+  } = useActions()
   const navigate = useNavigate()
   const _ = useFormater()
   const [showChangeInfoModal, setShowChangeInfoModal] = useState<boolean>(false)
@@ -114,7 +121,7 @@ export const LMSPage: FC = () => {
                     Редактировать выпуски
                   </a>
                 ) : null}
-                <a
+                {/* <a
                   href='#'
                   onClick={e => {
                     e.preventDefault()
@@ -122,7 +129,7 @@ export const LMSPage: FC = () => {
                   }}
                 >
                   Изменить личную информацию
-                </a>
+                </a> */}
                 <a
                   href='#'
                   onClick={e => {
@@ -138,7 +145,7 @@ export const LMSPage: FC = () => {
           <Col md={8} sm={12}>
             <h4>Избранное</h4>
             <Row>
-              {favorites.map(n => (
+              {favoriteNewspapers.map(n => (
                 <NewspaperCard
                   key={n.id}
                   id={n.id}
@@ -150,7 +157,23 @@ export const LMSPage: FC = () => {
                   tags={n.tags}
                   tagsClassName='gray-scroll'
                   isFavorite={true}
-                  favoriteClickHandler={() => checkIsFavorite(n)}
+                  favoriteClickHandler={() => checkNewspaperIsFavorite(n)}
+                />
+              ))}
+            </Row>
+            <br />
+            <Row>
+              {favoriteLearningMaterials.map(lm => (
+                <LearningMaterialCard
+                  key={lm.id}
+                  id={lm.id}
+                  name={lm.name}
+                  created_date={lm.created_date}
+                  size={6}
+                  isFavorite={true}
+                  favoriteClickHandler={() =>
+                    checkLearningMaterialIsFavorite(lm)
+                  }
                 />
               ))}
             </Row>

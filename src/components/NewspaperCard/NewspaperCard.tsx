@@ -32,8 +32,8 @@ export const NewspaperCard: FC<IProps> = ({
 }) => {
   if (tags?.length) {
     return (
-      <Col key={id} sm={size}>
-        <div className='publisher-year-col'>
+      <Col sm={size}>
+        <div className='publisher-year-col margin-on-phone'>
           <Link to={link}>
             <img src={imageUrl} alt={alt} className='squared-img' />
             <div className='text'>
@@ -65,25 +65,27 @@ export const NewspaperCard: FC<IProps> = ({
   }
 
   return (
-    <Col key={id} sm={size} className='publisher-year-col'>
-      <Link to={link}>
-        <img src={imageUrl} alt={alt} className='squared-img' />
-        <div className='text'>
-          <div>{date}</div>
-          {isFavorite ? (
-            <button
-              className='star'
-              onClick={event => {
-                event.preventDefault()
+    <Col key={id} sm={size}>
+      <div className='publisher-year-col margin-on-phone'>
+        <Link to={link}>
+          <img src={imageUrl} alt={alt} className='squared-img' />
+          <div className='text'>
+            <div>{date}</div>
+            {isFavorite ? (
+              <button
+                className='star'
+                onClick={event => {
+                  event.preventDefault()
 
-                favoriteClickHandler()
-              }}
-            >
-              <img src={star} alt='star' />
-            </button>
-          ) : null}
-        </div>
-      </Link>
+                  favoriteClickHandler()
+                }}
+              >
+                <img src={star} alt='star' />
+              </button>
+            ) : null}
+          </div>
+        </Link>
+      </div>
     </Col>
   )
 }

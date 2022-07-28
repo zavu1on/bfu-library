@@ -39,7 +39,7 @@ exports[`Header Страница Подборок 1`] = `
 exports[`Header Страница Подборок 2`] = `
 <a
   class="nav-link"
-  data-rr-ui-event-key="/learning-material/"
+  data-rr-ui-event-key="/learning-materials/"
   href="#"
   role="button"
   tabindex="0"
@@ -51,7 +51,7 @@ exports[`Header Страница Подборок 2`] = `
 exports[`Header Страница Учебных материалов 1`] = `
 <a
   class="nav-link active"
-  data-rr-ui-event-key="/learning-material/"
+  data-rr-ui-event-key="/learning-materials/"
   href="#"
   role="button"
   tabindex="0"

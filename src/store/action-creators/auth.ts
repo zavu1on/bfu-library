@@ -1,4 +1,4 @@
-import { INewspaper } from './../../types/library'
+import { INewspaper, ILearningMaterial } from './../../types/library'
 import { Dispatch } from 'redux'
 import { AuthAction, AuthActionTypes } from '../../types/redux/auth'
 import api from '../../api'
@@ -24,7 +24,8 @@ export const login = (login: string, password: string) => {
           role: resp.data.role,
           email: resp.data.email,
 
-          favorites: resp.data.favourites_newspapers,
+          favoriteNewspapers: resp.data.favourites_newspapers,
+          favoriteLearningMaterials: resp.data.favourites_learning_materials,
           postsEdited: resp.data.pages_edited,
 
           firstName: resp.data.first_name,
@@ -41,7 +42,8 @@ export const login = (login: string, password: string) => {
           role: 'Unanimous',
           email: '',
 
-          favorites: [],
+          favoriteNewspapers: [],
+          favoriteLearningMaterials: [],
           postsEdited: 0,
 
           firstName: '',
@@ -65,16 +67,33 @@ export const logout = () => {
   }
 }
 
-export const checkIsFavorite = (newspaper: INewspaper) => {
+export const checkNewspaperIsFavorite = (newspaper: INewspaper) => {
   return async (dispatch: Dispatch<AuthAction>) => {
     // fetch
+
     await api.post('/library/toggle-newspaper-is-favorite/', {
       id: newspaper.id,
     })
 
     dispatch({
-      type: AuthActionTypes.CHECK_IS_FAVORITE,
+      type: AuthActionTypes.CHECK_NEWSPAPER_IS_FAVORITE,
       payload: newspaper,
+    })
+  }
+}
+
+export const checkLearningMaterialIsFavorite = (
+  learningMaterial: ILearningMaterial
+) => {
+  return async (dispatch: Dispatch<AuthAction>) => {
+    // fetch
+    await api.post('/library/toggle-learning-material-is-favorite/', {
+      id: learningMaterial.id,
+    })
+
+    dispatch({
+      type: AuthActionTypes.CHECK_LM_IS_FAVORITE,
+      payload: learningMaterial,
     })
   }
 }

@@ -22,27 +22,27 @@ export const DetailNewspaperPage: FC = () => {
   const { isLoading: isNewspaperLoading, data: newspaper } = useQuery(
     ['newspaper', id],
     async (): Promise<AxiosResponse<INewspaper>> => {
-      return await api.get(`/library/newspapers/get/${id}`)
+      return await api.get(`/library/newspapers/get/${id}/`)
     }
   )
   const { isLoading: isPagesLoading, data: pages } = useQuery(
     ['pages', id],
     async (): Promise<AxiosResponse<IPage[]>> => {
-      return await api.get(`/library/pages/all/${id}`)
+      return await api.get(`/library/pages/all/${id}/`)
     }
   )
-  const { role, favorites } = useTypedSelector(state => state.auth)
-  const { checkIsFavorite } = useActions()
+  const { role, favoriteNewspapers } = useTypedSelector(state => state.auth)
+  const { checkNewspaperIsFavorite } = useActions()
   const _ = useFormater()
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!isNewspaperLoading && !newspaper) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
   }, [])
 
   useEffect(() => {
-    if (!isNewspaperLoading && !newspaper) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
 
     if (!isNewspaperLoading) {
       setTimeout(() => {
@@ -61,9 +61,9 @@ export const DetailNewspaperPage: FC = () => {
   const handleCloseModal = () => setShowModal(false)
 
   const handleShowModal = async () => {
-    await api.post('/make-permissions/')
-
     if (role === 'Editor') {
+      await api.post('/make-permissions/')
+
       window.location.replace(`/admin/api/page/${id}/`)
     }
 
@@ -109,11 +109,11 @@ export const DetailNewspaperPage: FC = () => {
                 right: 0,
                 bottom: 2,
               }}
-              onClick={() => checkIsFavorite(newspaper!.data)}
+              onClick={() => checkNewspaperIsFavorite(newspaper!.data)}
             >
               <img
                 src={
-                  !!favorites.find(f => f.id === newspaper?.data?.id)
+                  !!favoriteNewspapers.find(f => f.id === newspaper?.data?.id)
                     ? starFill
                     : star
                 }

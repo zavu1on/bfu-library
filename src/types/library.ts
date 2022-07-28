@@ -31,3 +31,10 @@ export interface INewspaper {
   category: ICategory // для подборок
   preview_image: string
 }
+
+export interface ILearningMaterial {
+  id: number
+  name: string
+  created_date: string
+  file: string
+}

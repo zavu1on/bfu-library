@@ -22,7 +22,8 @@ function App() {
             role: resp.data.role,
             email: resp.data.email,
 
-            favorites: resp.data.favourites_newspapers,
+            favoriteNewspapers: resp.data.favourites_newspapers,
+            favoriteLearningMaterials: resp.data.favourites_learning_materials,
             postsEdited: resp.data.pages_edited,
 
             firstName: resp.data.first_name,
