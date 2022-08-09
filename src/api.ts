@@ -52,6 +52,9 @@ $api.interceptors.response.use(
           // @ts-ignore
           text: `Вы не авторизованны!`,
         })
+
+        localStorage.removeItem('access')
+        localStorage.removeItem('refresh')
       }
     }
 

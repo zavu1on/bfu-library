@@ -13,7 +13,7 @@ import img7 from '../static/images/7.jpg'
 import img8 from '../static/images/8.jpg'
 import img9 from '../static/images/9.jpg'
 import img10 from '../static/images/10.jpg'
-import author1 from '../static/authors/author1.jpg'
+import author4 from '../static/authors/author4.jpg'
 
 export const IndexPage: FC = () => {
   const [title, setTitle] = useState('Архив газет Калининградской области')
@@ -131,7 +131,12 @@ export const IndexPage: FC = () => {
         <Row>
           <Col md={3} sm={6}>
             <div className='author'>
-              <img src={author1} alt='Баранова Елена Вячеславовна' />
+              <img
+                src={
+                  'https://www.pngkit.com/png/full/126-1262807_instagram-default-profile-picture-png.png'
+                }
+                alt='Баранова Елена Вячеславовна'
+              />
               <h6>Баранова Елена Вячеславовна</h6>
               <em>Руководитель проекта</em>
               <div>
@@ -177,12 +182,7 @@ export const IndexPage: FC = () => {
           </Col>
           <Col md={3} sm={6}>
             <div className='author'>
-              <img
-                src={
-                  'https://www.pngkit.com/png/full/126-1262807_instagram-default-profile-picture-png.png'
-                }
-                alt='Саенко Ангелина Вячеславовна'
-              />
+              <img src={author4} alt='Саенко Ангелина Вячеславовна' />
               <h6>Саенко Ангелина Вячеславовна</h6>
               <em>Систематизация архива и поиск материала</em>
               <div>НИЦ социально-гуманитарной информатики БФУ им. И. Канта</div>
