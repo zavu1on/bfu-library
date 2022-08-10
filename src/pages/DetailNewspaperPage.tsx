@@ -51,8 +51,7 @@ export const DetailNewspaperPage: FC = () => {
             `#text-${img.id}`
           ) as HTMLParagraphElement
 
-          // @ts-ignore
-          textContainer.style.maxHeight = `${img.naturalHeight}px`
+          textContainer.style.maxHeight = `${img.clientHeight}px`
         })
       }, 100)
     }
