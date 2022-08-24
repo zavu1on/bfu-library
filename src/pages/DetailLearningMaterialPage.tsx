@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Header } from '../components/Header/Header'
 import { Loader } from '../components/Loader'
 import { useActions } from '../hooks/useActions'
-import { useFormater } from '../hooks/useFormater/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import star from '../static/star-black.svg'
 import starFill from '../static/star-fill-black.svg'
@@ -17,7 +16,6 @@ import { PDFReader } from 'reactjs-pdf-reader'
 
 export const DetailLearningMaterialPage: FC = () => {
   const { id } = useParams()
-  const [pages, setPages] = useState(0)
   const navigate = useNavigate()
   const { isLoading, data: learningMaterial } = useQuery(
     ['learning-materials', id],
@@ -29,7 +27,6 @@ export const DetailLearningMaterialPage: FC = () => {
     state => state.auth
   )
   const { checkLearningMaterialIsFavorite } = useActions()
-  const _ = useFormater()
 
   useEffect(() => {
     if (!isLoading && !learningMaterial?.data) navigate('/not-found/')

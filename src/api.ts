@@ -46,13 +46,6 @@ $api.interceptors.response.use(
 
         return $api.request(originalRequest)
       } catch (e) {
-        await Swal.fire({
-          icon: 'error',
-          title: 'Уупс...',
-          // @ts-ignore
-          text: `Вы не авторизованны!`,
-        })
-
         localStorage.removeItem('access')
         localStorage.removeItem('refresh')
       }

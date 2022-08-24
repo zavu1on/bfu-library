@@ -8,7 +8,7 @@ export interface IPublisher {
   id: number
   name: string
   description: string
-  years_of_working: string // '1987 - 2000'
+  years_of_working: string // example: '1987 - 2000'
   num_of_newspapers: number
   preview_image: string
 }
@@ -30,6 +30,7 @@ export interface INewspaper {
   is_important: boolean
   category: ICategory // для подборок
   preview_image: string
+  is_published: boolean
 }
 
 export interface ILearningMaterial {

@@ -44,15 +44,21 @@ export const DetailNewspaperPage: FC = () => {
   useEffect(() => {
     if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
 
-    if (!isNewspaperLoading) {
-      setTimeout(() => {
-        document.querySelectorAll('.img-container img').forEach(img => {
+    if (!isNewspaperLoading && newspaper?.data.is_published) {
+      const interval = setInterval(() => {
+        const images = document.querySelectorAll('.img-container img')
+
+        images.forEach(img => {
           const textContainer = document.querySelector(
             `#text-${img.id}`
           ) as HTMLParagraphElement
 
           textContainer.style.maxHeight = `${img.clientHeight}px`
         })
+
+        if (images.length) {
+          clearInterval(interval)
+        }
       }, 100)
     }
   }, [isNewspaperLoading])
@@ -130,14 +136,17 @@ export const DetailNewspaperPage: FC = () => {
             className='page-container'
             style={idx === 0 ? { marginTop: 48 } : {}}
           >
-            <Col md={1}>
+            <Col md={newspaper?.data.is_published ? 1 : 2}>
               <div className='idx-container'>
                 <div className='idx'>
                   <span>{idx + 1}</span>
                 </div>
               </div>
             </Col>
-            <Col md={5} className='img-container'>
+            <Col
+              md={newspaper?.data.is_published ? 5 : 8}
+              className='img-container'
+            >
               <PrismaZoom allowTouchEvents={true}>
                 <img
                   style={{
@@ -150,13 +159,15 @@ export const DetailNewspaperPage: FC = () => {
                 />
               </PrismaZoom>
             </Col>
-            <Col
-              md={6}
-              className='text-container white-scroll'
-              id={`text-${idx}`}
-            >
-              <p dangerouslySetInnerHTML={{ __html: p.text }}></p>
-            </Col>
+            {newspaper?.data.is_published ? (
+              <Col
+                md={6}
+                className='text-container white-scroll'
+                id={`text-${idx}`}
+              >
+                <p dangerouslySetInnerHTML={{ __html: p.text }}></p>
+              </Col>
+            ) : null}
           </Row>
         ))}
         <Button
