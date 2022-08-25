@@ -222,7 +222,7 @@ header {
   }
 
   @media screen and (max-width: 650px) {
-    height: 700px;
+    height: 440px;
 
     nav ul {
       margin: 0 20px;
@@ -230,15 +230,18 @@ header {
 
       li {
         text-transform: uppercase;
-        margin-top: 12px;
+        margin-top: 14px;
+        text-align: center;
       }
     }
 
     .quote {
-      margin-top: 80px;
-      font-size: 20px;
-      width: 300px;
+      display: none;
     }
+  }
+
+  @media screen and (max-width: 530px) {
+    height: 500px;
   }
 }
 
@@ -614,6 +617,7 @@ aside {
 
 .publisher-year-col {
   position: relative;
+  margin-bottom: 12px;
 
   .text {
     position: absolute;
@@ -771,6 +775,8 @@ footer {
     .col-md-6 {
       margin-top: 16px;
     }
+
+    padding: 12px;
   }
 }
 

@@ -64,14 +64,14 @@ $api.interceptors.response.use(
 
       await Swal.fire({
         icon: 'error',
-        title: 'Уупс...',
+        title: 'Упс...',
         // @ts-ignore
         html,
       })
     } else {
       await Swal.fire({
         icon: 'error',
-        title: 'Уупс...',
+        title: 'Упс...',
         // @ts-ignore
         text: `Что-то пошло не так: ${error.response?.data.detail}`,
       })

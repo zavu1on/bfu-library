@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from 'react'
 import { Container, Row, Col, Modal, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
-import { NewspaperCard } from '../components/NewspaperCard/NewspaperCard'
+import { Header } from '../components/Header'
+import { NewspaperCard } from '../components/NewspaperCard'
 import { useActions } from '../hooks/useActions'
 import { useFormater } from '../hooks/useFormater/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import reader from '../static/reader.svg'
 import editor from '../static/editor.svg'
 import api from '../api'
-import { LearningMaterialCard } from '../components/LearningMaterialCard/LearningMaterialCard'
+import { LearningMaterialCard } from '../components/LearningMaterialCard'
 
 export const LMSPage: FC = () => {
   const {

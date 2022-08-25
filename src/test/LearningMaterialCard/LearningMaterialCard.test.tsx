@@ -1,4 +1,4 @@
-import { LearningMaterialCard } from './LearningMaterialCard'
+import { LearningMaterialCard } from '../../components/LearningMaterialCard'
 import { render, screen, fireEvent } from '@testing-library/react'
 import jest from 'jest'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'

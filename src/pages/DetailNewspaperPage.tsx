@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { useActions } from '../hooks/useActions'
 import { useFormater } from '../hooks/useFormater/useFormater'

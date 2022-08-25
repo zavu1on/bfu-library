@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'

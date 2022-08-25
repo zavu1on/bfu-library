@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import star from '../../static/star-fill.svg'
+import star from '../static/star-fill.svg'
 
 interface IProps {
   id: number | string

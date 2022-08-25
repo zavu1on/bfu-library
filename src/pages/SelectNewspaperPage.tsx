@@ -2,9 +2,9 @@ import { FC, useEffect, useState } from 'react'
 import { Row, Col, Container, Form } from 'react-bootstrap'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
-import { NewspaperCard } from '../components/NewspaperCard/NewspaperCard'
+import { NewspaperCard } from '../components/NewspaperCard'
 import { useFormater } from '../hooks/useFormater/useFormater'
 import { INewspaper } from '../types/library'
 import api from '../api'
@@ -33,9 +33,9 @@ export const SelectNewspaperPage: FC = () => {
 
   useEffect(() => {
     if (!isLoading && !newspapers?.data.length) navigate('/not-found/')
-  }, [])
+  }, [isLoading])
 
-  if (isLoading) return <Loader />
+  if (isLoading || !newspapers?.data.length) return <Loader />
 
   return (
     <>

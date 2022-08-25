@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 
 export const NotFoundPage = () => {
   return (

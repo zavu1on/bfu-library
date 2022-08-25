@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 import { useActions } from '../hooks/useActions'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import Swal from 'sweetalert2'

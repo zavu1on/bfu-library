@@ -2,13 +2,13 @@ import { FC, useEffect, useState } from 'react'
 import { Row, Col, Container, Form } from 'react-bootstrap'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { Header } from '../components/Header/Header'
+import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { useFormater } from '../hooks/useFormater/useFormater'
 import { ILearningMaterial } from '../types/library'
 import api from '../api'
 import { AxiosResponse } from 'axios'
-import { LearningMaterialCard } from '../components/LearningMaterialCard/LearningMaterialCard'
+import { LearningMaterialCard } from '../components/LearningMaterialCard'
 
 export const ListLearningMaterialPage: FC = () => {
   const { isLoading, data: learningMaterials } = useQuery(
