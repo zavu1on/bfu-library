@@ -1,4 +1,4 @@
-import { NewspaperCard } from '../../components/NewspaperCard'
+import { NewspaperCard } from '../NewspaperCard'
 import { render, screen, fireEvent } from '@testing-library/react'
 import jest from 'jest'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'

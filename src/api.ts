@@ -18,6 +18,11 @@ $api.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config
 
+    if (error.response?.status === 403) {
+      localStorage.removeItem('access')
+      localStorage.removeItem('refresh')
+    }
+
     if (
       // @ts-ignore
       error.response?.data.detail ===
