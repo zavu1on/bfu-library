@@ -1,8 +1,8 @@
-import { NewspaperCard } from '../NewspaperCard'
+import { NewspaperCard } from '../../components/NewspaperCard'
 import { render, screen, fireEvent } from '@testing-library/react'
 import jest from 'jest'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { useFormater } from '../../hooks/useFormater/useFormater'
+import { useFormater } from '../../hooks/useFormater'
 
 const _ = useFormater()
 

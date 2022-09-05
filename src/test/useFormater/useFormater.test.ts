@@ -1,4 +1,4 @@
-import { useFormater } from './useFormater'
+import { useFormater } from '../../hooks/useFormater'
 import jest from 'jest'
 
 const _ = useFormater()

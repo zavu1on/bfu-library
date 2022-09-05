@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
 import { useActions } from '../hooks/useActions'
-import { useFormater } from '../hooks/useFormater/useFormater'
+import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 // @ts-ignore
 import PrismaZoom from 'react-prismazoom'

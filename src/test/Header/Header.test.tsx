@@ -1,4 +1,4 @@
-import { Header } from '../Header'
+import { Header } from '../../components/Header'
 import { render, screen } from '@testing-library/react'
 import jest from 'jest'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
