@@ -117,7 +117,7 @@ export const SelectYearPage: FC = () => {
             <Carousel.Item key={`item-${qs[0]}`}>
               <Row>
                 {qs.map(year => (
-                  <Col sm={3} className='publisher-year-col'>
+                  <Col md={3} sm={6} className='publisher-year-col'>
                     <div
                       onClick={() => {
                         setYears(
@@ -130,15 +130,7 @@ export const SelectYearPage: FC = () => {
                         )
                       }}
                     >
-                      <img
-                        src={publisher?.data.preview_image}
-                        alt={year.toString()}
-                        className='squared-img'
-                        style={{
-                          height: 300,
-                        }}
-                      />
-                      <div className='text calc-width'>
+                      <div className='not-absolute-text calc-width'>
                         <div>{year}</div>
                       </div>
                     </div>
