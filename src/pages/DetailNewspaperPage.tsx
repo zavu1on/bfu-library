@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Loader } from '../components/Loader'
@@ -8,7 +8,6 @@ import { useFormater } from '../hooks/useFormater'
 import { useTypedSelector } from '../hooks/useTypedSelector'
 // @ts-ignore
 import PrismaZoom from 'react-prismazoom'
-import { MyAlert } from '../components/MyAlert'
 import star from '../static/star-black.svg'
 import starFill from '../static/star-fill-black.svg'
 import { INewspaper, IPage } from '../types/library'
@@ -35,7 +34,6 @@ export const DetailNewspaperPage: FC = () => {
   const { checkNewspaperIsFavorite } = useActions()
   const _ = useFormater()
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [showAlert, setShowAlert] = useState<boolean>(false)
 
   useEffect(() => {
     if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
@@ -91,18 +89,6 @@ export const DetailNewspaperPage: FC = () => {
           Архив / {newspaper?.data?.publisher.name} /{' '}
           {_(newspaper?.data?.created_date!)}
         </div>
-
-        <MyAlert
-          show={showAlert}
-          closeHandler={() => setShowAlert(false)}
-          variant='success'
-          header='Спасибо!'
-          text='Вы успешно отправили отчёт, наши редакторы скоро исправят эту ошибку.'
-          style={{
-            position: 'relative',
-            top: 20,
-          }}
-        />
 
         <h4 style={{ marginTop: 70 }}>
           {newspaper?.data?.publisher.name}, {_(newspaper?.data?.created_date!)}{' '}
@@ -185,33 +171,14 @@ export const DetailNewspaperPage: FC = () => {
           <Modal.Title>Отчёт об ошибке</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className='mb-3 inline-group'>
-              <Form.Label htmlFor='page-num' className='mb-0 mr-4'>
-                Номер страницы
-              </Form.Label>
-              <Form.Control type='number' id='page-num' style={{ width: 60 }} />
-            </Form.Group>
-            <Form.Group className='mb-3'>
-              <Form.Label htmlFor='comment' className='mb-0 mr-4'>
-                Комментарий
-              </Form.Label>
-              <Form.Control id='comment' type='text' as='textarea' />
-            </Form.Group>
-          </Form>
+          Пожалуйста, расскажите об ошибке{' '}
+          <a href='mailto:AVSaenko1@kantiana.ru'>
+            Саенко Ангелинае Вячеславовне
+          </a>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleCloseModal}>
             Отмена
-          </Button>
-          <Button
-            variant='dark'
-            onClick={() => {
-              handleCloseModal()
-              setShowAlert(true)
-            }}
-          >
-            Отправить
           </Button>
         </Modal.Footer>
       </Modal>

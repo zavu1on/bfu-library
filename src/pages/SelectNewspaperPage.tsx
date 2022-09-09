@@ -104,8 +104,6 @@ export const SelectNewspaperPage: FC = () => {
                   )
                 })
                 .map(n => {
-                  console.log(n.tags.length)
-
                   if (n.tags.length > 0) {
                     return (
                       <NewspaperCard

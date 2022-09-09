@@ -22,7 +22,6 @@ export const CategoryPage: FC = () => {
       return await api.get('/library/newspapers/all/?category=True')
     }
   )
-
   const [index, setIndex] = useState(0)
   const _ = useFormater()
 
@@ -33,7 +32,6 @@ export const CategoryPage: FC = () => {
   }, [])
 
   const handleSelect = (selectedIndex: number) => setIndex(selectedIndex)
-
   const splitNewspapers = (newspapers: INewspaper[]) => {
     const resp: INewspaper[][] = []
 
@@ -52,7 +50,7 @@ export const CategoryPage: FC = () => {
     <>
       <Header />
       <Container>
-        <h1>Подборки</h1>
+        <h1>Избранное</h1>
       </Container>
       {categories?.data.map(category => (
         <div

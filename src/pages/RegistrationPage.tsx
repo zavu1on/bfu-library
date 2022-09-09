@@ -59,13 +59,32 @@ export const RegistrationPage: FC = () => {
     <>
       <Header />
       <div className='full'>
+        <div
+          style={{
+            marginTop: 12,
+            fontSize: 16,
+            color: '#6C757D',
+            position: 'absolute',
+            top: 4,
+            left: 24,
+          }}
+        >
+          * обратите внимание, зарегистрироваться на платформе могут только
+          сотрудники и студенты БФУ имени Канта{' '}
+          <strong>по почте kantiana</strong>
+          <br />
+          другим лицам необходимо направить официальный запрос от организации на
+          имя ректора с просьбой открыть архив
+        </div>
+
         <div className='form-container'>
           <div className='form-type'>
             <Link to={'/lms/login/'}>Вход</Link>
             <Link to={'/lms/register/'} className='type-active'>
-              Регистрация
+              Регистрация *
             </Link>
           </div>
+
           <Form>
             <Form.Group className='mb-3'>
               <Form.Control
@@ -163,7 +182,7 @@ export const RegistrationPage: FC = () => {
               className='w-100'
               onClick={registerClickHandler}
             >
-              Войти
+              Зарегистрироваться
             </Button>
           </Form>
         </div>

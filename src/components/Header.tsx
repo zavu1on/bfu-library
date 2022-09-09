@@ -14,16 +14,18 @@ export const Header: FC = () => {
       }}
     >
       <Nav.Item>
-        <Nav.Link eventKey='/'>Лендинг</Nav.Link>
+        <Nav.Link eventKey='/'>О проекте</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey='/archive/'>Архив</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey='/categories/'>Подборки</Nav.Link>
+        <Nav.Link eventKey='/categories/'>Избранное</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey='/learning-materials/'>Учебные материалы</Nav.Link>
+        <Nav.Link eventKey='/learning-materials/'>
+          Учебно-методические материалы
+        </Nav.Link>
       </Nav.Item>
       <Nav.Item className='lms'>
         <Nav.Link eventKey='/lms/'>Личный кабинет</Nav.Link>

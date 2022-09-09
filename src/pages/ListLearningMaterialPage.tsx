@@ -45,9 +45,9 @@ export const ListLearningMaterialPage: FC = () => {
             color: '#6C757D',
           }}
         >
-          Учебные материалы
+          Учебно-методические материалы
         </div>
-        <h1>Учебные материалы</h1>
+        <h1>Учебно-методические материалы</h1>
         <Row>
           <Col md={3}>
             <div className='newspaper-filter'>

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Container, Row, Col, Form } from 'react-bootstrap'
+import { Container, Row, Col, Form, Carousel } from 'react-bootstrap'
 import { useQuery } from 'react-query'
 import { Link, useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
@@ -17,10 +17,11 @@ export const SelectYearPage: FC = () => {
       return await api.get(`/library/publishers/get/${id}/`)
     }
   )
-
   const navigate = useNavigate()
   const [years, setYears] = useState<number[]>([])
+  const [yearsBy10, setYearsBy10] = useState<string[]>([])
   const [initialYears, setInitialYears] = useState<number[]>([])
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     if (!isLoading && !publisher?.data) navigate('/not-found/')
@@ -29,14 +30,12 @@ export const SelectYearPage: FC = () => {
 
     return () => document.body.removeAttribute('style')
   }, [])
-
   useEffect(() => {
     const years = publisher?.data.years_of_working
 
     if (!years) return
 
     const [start, end] = years.split(' - ')
-
     const arr = []
 
     for (let i = 0; i < Number(end) - Number(start); i++) {
@@ -47,6 +46,33 @@ export const SelectYearPage: FC = () => {
     setYears(arr)
     setInitialYears(arr)
   }, [publisher])
+  useEffect(() => {
+    if (!yearsBy10.length) {
+      for (let i = 0; i < years.length; i++) {
+        if (i % 10 === 0 && i !== 0) {
+          setYearsBy10(prev => [...prev, `${years[i - 10]} - ${years[i]}`])
+        }
+        if (i === years.length - 1) {
+          setYearsBy10(prev => [
+            ...prev,
+            `${years[i - (i % 10)]} - ${years[i]}`,
+          ])
+        }
+      }
+    }
+  }, [years])
+
+  const splitYears = (years: string[]) => {
+    const resp: string[][] = []
+
+    for (let i = 0; i < years.length; i++) {
+      if (i % 4 === 0) resp.push([])
+
+      resp[resp.length - 1].push(years[i])
+    }
+
+    return resp
+  }
 
   if (isLoading) return <Loader />
 
@@ -82,6 +108,46 @@ export const SelectYearPage: FC = () => {
             }
           }}
         />
+        <br />
+        <Carousel
+          activeIndex={activeIndex}
+          onSelect={(num: number) => setActiveIndex(num)}
+        >
+          {splitYears(yearsBy10).map(qs => (
+            <Carousel.Item key={`item-${qs[0]}`}>
+              <Row>
+                {qs.map(year => (
+                  <Col sm={3} className='publisher-year-col'>
+                    <div
+                      onClick={() => {
+                        setYears(
+                          initialYears.filter(i => {
+                            return (
+                              Number(year.split(' - ')[0]) <= i &&
+                              Number(year.split(' - ')[1]) >= i
+                            )
+                          })
+                        )
+                      }}
+                    >
+                      <img
+                        src={publisher?.data.preview_image}
+                        alt={year.toString()}
+                        className='squared-img'
+                        style={{
+                          height: 300,
+                        }}
+                      />
+                      <div className='text calc-width'>
+                        <div>{year}</div>
+                      </div>
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
         <Row
           style={{
             marginTop: 30,
