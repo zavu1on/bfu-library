@@ -34,16 +34,15 @@ function App() {
       })
     }
 
-    // setInterval(() => {
-    //   const element = document.querySelector(
-    //     '.leave-russia-now-and-apply-your-skills-to-the-world'
-    //   ) as HTMLDivElement
+    setInterval(() => {
+      const element = document.querySelector(
+        '.leave-russia-now-and-apply-your-skills-to-the-world'
+      ) as HTMLDivElement
 
-    //   if (element) {
-    //     element.style.display = 'none'
-    //     window.location.reload()
-    //   }
-    // }, 10)
+      if (element) {
+        element.style.display = 'none'
+      }
+    }, 10)
   }, [])
 
   return <QueryClientProvider client={client}>{routes}</QueryClientProvider>
