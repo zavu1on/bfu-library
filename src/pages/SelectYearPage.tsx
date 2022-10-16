@@ -48,16 +48,26 @@ export const SelectYearPage: FC = () => {
   }, [publisher])
   useEffect(() => {
     if (!yearsBy10.length) {
+      let counter = 0
+      let offset = 0
+
       for (let i = 0; i < years.length; i++) {
-        if (i % 10 === 0 && i !== 0) {
+        if (counter === 10) {
           setYearsBy10(prev => [...prev, `${years[i - 10]} - ${years[i]}`])
+          counter = -1
+          offset += 1
+        } else if (i === years.length - 1) {
+          const start = years[i - (i % 10) + offset]
+          const stop = years[i]
+
+          if (start === stop) {
+            setYearsBy10(prev => [...prev, `${start}`])
+          } else {
+            setYearsBy10(prev => [...prev, `${start} - ${stop}`])
+          }
         }
-        if (i === years.length - 1) {
-          setYearsBy10(prev => [
-            ...prev,
-            `${years[i - (i % 10)]} - ${years[i]}`,
-          ])
-        }
+
+        counter += 1
       }
     }
   }, [years])
@@ -117,20 +127,28 @@ export const SelectYearPage: FC = () => {
             <Carousel.Item key={`item-${qs[0]}`}>
               <Row>
                 {qs.map(year => (
-                  <Col md={3} sm={6} className='publisher-year-col'>
-                    <div
-                      onClick={() => {
-                        setYears(
-                          initialYears.filter(i => {
-                            return (
-                              Number(year.split(' - ')[0]) <= i &&
-                              Number(year.split(' - ')[1]) >= i
-                            )
-                          })
-                        )
-                      }}
-                    >
-                      <div className='not-absolute-text calc-width'>
+                  <Col md={3} sm={6} className='publisher-year-col' key={year}>
+                    <div>
+                      <div
+                        className='not-absolute-text calc-width pointer'
+                        onClick={() => {
+                          setYears(
+                            initialYears.filter(i => {
+                              if (year.split(' - ').length === 1) {
+                                return (
+                                  Number(year.split(' - ')[0]) <= i &&
+                                  Number(year.split(' - ')[0]) >= i
+                                )
+                              }
+
+                              return (
+                                Number(year.split(' - ')[0]) <= i &&
+                                Number(year.split(' - ')[1]) >= i
+                              )
+                            })
+                          )
+                        }}
+                      >
                         <div>{year}</div>
                       </div>
                     </div>

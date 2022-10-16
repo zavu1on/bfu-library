@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Row, Col, Container, Form } from 'react-bootstrap'
+import { Row, Col, Container, Form, Button } from 'react-bootstrap'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header'
@@ -25,10 +25,10 @@ export const SelectNewspaperPage: FC = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState<{
     text: string
-    date: Date | null
+    date: Date | undefined
   }>({
     text: '',
-    date: null,
+    date: undefined,
   })
 
   useEffect(() => {
@@ -58,14 +58,18 @@ export const SelectNewspaperPage: FC = () => {
             <div className='newspaper-filter'>
               <Form.Control
                 type='date'
-                value={!!formData.date ? _(formData.date) : undefined}
+                value={_(formData.date)}
                 onChange={event => {
+                  if (event.target.value.startsWith('0')) {
+                    return event.preventDefault()
+                  }
+
                   setFormData(fd => ({
                     ...fd,
                     date:
-                      event.target.value !== 'Invalid Date'
+                      event.target.value !== ''
                         ? new Date(event.target.value)
-                        : null,
+                        : undefined,
                   }))
                 }}
               />
@@ -83,6 +87,26 @@ export const SelectNewspaperPage: FC = () => {
                   marginTop: 16,
                 }}
               />
+              <Button
+                variant='outline-dark'
+                size='sm'
+                style={{
+                  marginTop: 16,
+                }}
+                onClick={() => {
+                  const dateInput = document.querySelector(
+                    'input[type="date"]'
+                  ) as HTMLInputElement
+                  dateInput.value = 'undefined'
+
+                  setFormData({
+                    text: '',
+                    date: undefined,
+                  })
+                }}
+              >
+                Очистить форму
+              </Button>
             </div>
           </Col>
           <Col md={9}>

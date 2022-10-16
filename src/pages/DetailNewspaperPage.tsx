@@ -18,7 +18,11 @@ import { AxiosResponse } from 'axios'
 export const DetailNewspaperPage: FC = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { isLoading: isNewspaperLoading, data: newspaper } = useQuery(
+  const {
+    isLoading: isNewspaperLoading,
+    data: newspaper,
+    failureCount,
+  } = useQuery(
     ['newspaper', id],
     async (): Promise<AxiosResponse<INewspaper>> => {
       return await api.get(`/library/newspapers/get/${id}/`)
@@ -36,11 +40,10 @@ export const DetailNewspaperPage: FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper?.data.id) navigate('/not-found/')
   }, [])
-
   useEffect(() => {
-    if (!isNewspaperLoading && !newspaper?.data) navigate('/not-found/')
+    if (!isNewspaperLoading && !newspaper?.data.id) navigate('/not-found/')
 
     if (!isNewspaperLoading && newspaper?.data.is_published) {
       const interval = setInterval(() => {
@@ -60,6 +63,11 @@ export const DetailNewspaperPage: FC = () => {
       }, 100)
     }
   }, [isNewspaperLoading])
+  useEffect(() => {
+    if (failureCount > 0 && !newspaper?.data.id) {
+      navigate('/not-found/')
+    }
+  }, [failureCount, newspaper])
 
   const handleCloseModal = () => setShowModal(false)
 
@@ -115,6 +123,25 @@ export const DetailNewspaperPage: FC = () => {
               />
             </button>
           ) : null}
+          <div className='navigation-btn-container'>
+            <Button
+              variant='dark'
+              size='sm'
+              onClick={() => navigate(`/archive/newspapers/${Number(id) - 1}/`)}
+            >
+              {'<'}
+            </Button>
+            <Button
+              variant='dark'
+              size='sm'
+              style={{
+                marginLeft: 24,
+              }}
+              onClick={() => navigate(`/archive/newspapers/${Number(id) + 1}/`)}
+            >
+              {'>'}
+            </Button>
+          </div>
         </h4>
         {pages?.data.map((p, idx) => (
           <Row
@@ -171,10 +198,8 @@ export const DetailNewspaperPage: FC = () => {
           <Modal.Title>Отчёт об ошибке</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Пожалуйста, расскажите об ошибке{' '}
-          <a href='mailto:AVSaenko1@kantiana.ru'>
-            Саенко Ангелинае Вячеславовне
-          </a>
+          Пожалуйста, сообщите об ошибке Саенко Ангелине Вячеславовне по почте{' '}
+          <a href='mailto:AVSaenko1@kantiana.ru'>AVSaenko1@kantiana.ru</a>
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleCloseModal}>

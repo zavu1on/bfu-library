@@ -28,7 +28,7 @@ describe('NewspaperCard', () => {
       </BrowserRouter>
     )
 
-    screen.getByText(_(new Date()))
+    screen.getByText(_(new Date())!)
 
     const image = screen.getByAltText('test image') as HTMLImageElement
     expect(image.src).toEqual('https://place-hold.it/350x480/')
@@ -72,7 +72,7 @@ describe('NewspaperCard', () => {
       </BrowserRouter>
     )
 
-    screen.getByText(_(new Date()))
+    screen.getByText(_(new Date())!)
 
     const image = screen.getByAltText('test image') as HTMLImageElement
     expect(image.src).toEqual('https://place-hold.it/350x480/')
@@ -112,7 +112,7 @@ describe('NewspaperCard', () => {
       </BrowserRouter>
     )
 
-    screen.getByText(_(new Date()))
+    screen.getByText(_(new Date())!)
 
     const image = screen.getByAltText('test image') as HTMLImageElement
     expect(image.src).toEqual('https://place-hold.it/350x480/')
@@ -167,7 +167,7 @@ describe('NewspaperCard', () => {
       </BrowserRouter>
     )
 
-    screen.getByText(_(new Date()))
+    screen.getByText(_(new Date())!)
 
     const image = screen.getByAltText('test image') as HTMLImageElement
     expect(image.src).toEqual('https://place-hold.it/350x480/')

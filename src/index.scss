@@ -642,6 +642,10 @@ aside {
       width: calc(100% - calc(var(--bs-gutter-x)));
     }
 
+    &.pointer:hover {
+      cursor: pointer;
+    }
+
     div {
       font-weight: 800;
       font-size: 24px;
@@ -920,5 +924,13 @@ footer {
 
   @media screen and (max-width: 770px) {
     margin-bottom: 16px;
+  }
+}
+
+.navigation-btn-container {
+  float: right;
+
+  button {
+    font-weight: 900;
   }
 }

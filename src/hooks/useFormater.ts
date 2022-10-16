@@ -1,6 +1,6 @@
 export const useFormater = () => {
-  return function (date: Date | string): string {
-    if (typeof date === 'string') {
+  return function (date: Date | string | undefined): string | undefined {
+    if (typeof date === 'string' || typeof date === 'undefined') {
       return date
     }
 

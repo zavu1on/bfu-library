@@ -7,7 +7,7 @@ interface IProps {
   id: number | string
   imageUrl: string
   alt: string
-  date: number | string
+  date: number | string | undefined
   tags?: {
     name: string
   }[]
